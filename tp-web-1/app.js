@@ -7,6 +7,8 @@ var logger = require('morgan');
 var indexRouter = require('./routes/index');
 
 var app = express();
+// conncetion to MongoDB
+const connectDB = require('./database/connectionDb');
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -17,6 +19,10 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+
+
+// mongoDb connection
+connectDB();
 
 app.use('/', indexRouter);
 
