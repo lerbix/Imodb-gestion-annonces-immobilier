@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Registration</title>
+  </head>
+  <body>
+    <h1>Registration</h1>
+
+    <!-- Formulaire d'inscription -->
+    <form action="/register" method="POST">
+      <!-- Champ nom d'utilisateur -->
+      <label for="username">Username:</label>
+      <input type="text" name="username" id="username" required>
+
+      <!-- Champ mot de passe -->
+      <label for="password">Password:</label>
+      <input type="password" name="password" id="password" required>
+
+      <!-- Case à cocher pour isAdmin -->
+      <label for="isAdmin">Register as Admin:</label>
+      <input type="checkbox" name="isAdmin" id="isAdmin" value="true">
+
+      <!-- Bouton de soumission -->
+      <input type="submit" value="Register">
+    </form>
+
+    <!-- Lien vers la page de connexion (si applicable) -->
+    <p>Already have an account? <a href="/login">Login</a></p>
+  </body>
+</html>

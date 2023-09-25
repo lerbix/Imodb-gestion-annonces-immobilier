@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Login</title>
+  </head>
+  <body>
+    <h1>Login</h1>
+
+    <!-- Formulaire de connexion -->
+    <form action="/login" method="POST">
+      <!-- Champ nom d'utilisateur -->
+      <label for="username">Username:</label>
+      <input type="text" name="username" id="username" required>
+
+      <!-- Champ mot de passe -->
+      <label for="password">Password:</label>
+      <input type="password" name="password" id="password" required>
+
+      <!-- Bouton de soumission -->
+      <input type="submit" value="Login">
+    </form>
+
+    <!-- Lien vers la page d'inscription (si applicable) -->
+    <p>Don't have an account? <a href="/register">Register</a></p>
+  </body>
+</html>
