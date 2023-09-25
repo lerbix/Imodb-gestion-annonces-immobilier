@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 const passportLocalMongoose = require('passport-local-mongoose');
-
+const { ObjectId } = mongoose.Types; // Importez ObjectId depuis Mongoose
 
 const annonceSchema = new Schema({
     // un titre
