@@ -13,6 +13,7 @@ var logger = require('morgan');
 var indexRouter = require('./routes/index');
 var registerRoute= require('./routes/register');
 var loginRoute = require("./routes/login");
+var annoncesRoute = require('./routes/annonces');
 
 var app = express();
 // conncetion to MongoDB
@@ -50,6 +51,7 @@ app.use(passport.session());
 app.use('/', indexRouter);
 app.use('/register', registerRoute);
 app.use('/login', loginRoute);
+app.use('/annonces', annoncesRoute);
 
 
 //Passport config
