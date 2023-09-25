@@ -1,0 +1,28 @@
+doctype html
+html
+  head
+    title Login
+  body
+    h1 Login
+
+    //- Display any login-related messages here (e.g., success or error messages)
+    if message
+      p.message= message
+
+    //- Login form
+    form(action="/login", method="POST")
+      //- Username field
+      label(for="username") Username:
+      input(type="text", name="username", id="username", required)
+
+      //- Password field
+      label(for="password") Password:
+      input(type="password", name="password", id="password", required)
+
+      //- Submit button
+      input(type="submit", value="Login")
+
+    //- Link to registration page (if applicable)
+    p
+      | Don't have an account? 
+      a(href="/register") Register
