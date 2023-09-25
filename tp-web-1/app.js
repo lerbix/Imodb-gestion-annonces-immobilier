@@ -1,14 +1,22 @@
 var createError = require('http-errors');
 var express = require('express');
+//express session
+var session = require('express-session');
+//passport
+var passport = require('passport');
+var LocalStrategy = require('passport-local').Strategy;
+
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 
 var indexRouter = require('./routes/index');
+var registerRoute= require('./routes/register');
+var loginRoute = require("./routes/login");
 
 var app = express();
 // conncetion to MongoDB
-const connectDB = require('./database/connectionDb');
+const connectDB = require('./config/connectionDb');
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -24,7 +32,30 @@ app.use(express.static(path.join(__dirname, 'public')));
 // mongoDb connection
 connectDB();
 
+//session setup
+app.use(session({
+  secret:'secret',
+  resave: false,
+  saveUninitialized: true,
+  cookie: {
+    maxAge: 1000 * 60 * 60 *24
+  }
+}));
+
+//passport 
+app.use(passport.initialize());
+app.use(passport.session());
+
+//routes
 app.use('/', indexRouter);
+app.use('/register', registerRoute);
+app.use('/login', loginRoute);
+
+
+//Passport config
+var user = require('./models/user');
+require('./config/passport');
+
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
