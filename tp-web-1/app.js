@@ -48,14 +48,15 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 //routes
-app.use('/', indexRouter);
+app.use('/', annoncesRoute);
 app.use('/register', registerRoute);
 app.use('/login', loginRoute);
-app.use('/annonces', annoncesRoute);
+// app.use('/annonces', annoncesRoute);
 
 
 //Passport config
 var user = require('./models/user');
+const annonces = require('./models/annonces');
 require('./config/passport');
 
 
