@@ -3,7 +3,7 @@ var router = express.Router();
 var {checkIfAuthenticated}= require('../controler/authControler');
 var {getAllAnnonces} =require('../controler/annoncesController')
 /* all annonces . */
-router.get('/', checkIfAuthenticated, getAllAnnonces);
+router.get('/', getAllAnnonces);
 
 
 module.exports = router;

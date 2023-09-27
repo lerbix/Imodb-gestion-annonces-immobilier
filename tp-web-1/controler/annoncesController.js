@@ -6,7 +6,7 @@ const getAllAnnonces = async (req, res, next) => {
         const annonces = await Annonce.find({}).exec(); // Utilisez .exec() pour exécuter la requête
     
         console.log('Annonces Récupérées : ', annonces)
-        res.render('annonces', { title: 'Annonces', annonces: annonces });
+        res.render('annonces', { title: 'Annonces', annonces: annonces, isAdmin: req.user ? req.user.isAdmin : undefined  });
       } catch (err) {
         console.error('Erreur lors de la récupération des annonces :', err);
         return next(err);
