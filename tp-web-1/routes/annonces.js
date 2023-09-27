@@ -1,15 +1,9 @@
 var express = require('express');
 var router = express.Router();
 var {checkIfAuthenticated}= require('../controler/authControler');
-
+var {getAllAnnonces} =require('../controler/annoncesController')
 /* all annonces . */
-router.get('/', checkIfAuthenticated, function(req, res, next) {
-
-    // TODO : get all annonces from database 
-
-    
-    res.render('annonces', { title: 'Anonnces : ' + req.user.username, admin: req.user.isAdmin });
-});
+router.get('/', checkIfAuthenticated, getAllAnnonces);
 
 
 module.exports = router;
