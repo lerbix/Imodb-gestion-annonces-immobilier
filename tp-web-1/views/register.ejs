@@ -2,29 +2,48 @@
 <html>
   <head>
     <title>Registration</title>
+    <link href="/style.css" rel="stylesheet">
+    <%- include('./partials/head.ejs'); %>
   </head>
   <body>
-    <h1>Registration</h1>
+    <div class="grid grid-cols-1 sm:grid-cols-2 h-screen w-full">
+      <div class="bg-gray-100 flex flex-col justify-center">
 
-    <!-- Formulaire d'inscription -->
-    <form action="/register" method="POST">
-      <!-- Champ nom d'utilisateur -->
-      <label for="username">Username:</label>
-      <input type="text" name="username" id="username" required>
-
-      <!-- Champ mot de passe -->
-      <label for="password">Password:</label>
-      <input type="password" name="password" id="password" required>
-
-      <!-- Case à cocher pour isAdmin -->
-      <label for="isAdmin">Register as Admin:</label>
-      <input type="checkbox" name="isAdmin" id="isAdmin" value="true">
-
-      <!-- Bouton de soumission -->
-      <input type="submit" value="Register">
-    </form>
-
-    <!-- Lien vers la page de connexion (si applicable) -->
-    <p>Already have an account? <a href="/login">Login</a></p>
+      <!-- Formulaire d'inscription -->
+      <form class="bg-white max-w-[400px] w-full mx-auto p-20 px-6 rounded-3xl border-gray-100" action="/register" method="POST">
+        <h1 class="text-4xl text-black font-bold text-center">Registration</h1>
+        <div class="flex flex-col mt-8 text-black py-2">
+          <!-- Champ nom d'utilisateur -->
+          <label for="username">Username:</label>
+          <input placeholder="Enter your email" class="rounded-xl border-2 border-gray-100 mt-2 p-2 bg-transparent" type="text" name="username" id="username" required>
+      </div>
+      <div class="flex flex-col mt-8 text-black py-2">
+        <!-- Champ mot de passe -->
+        <label for="password">Password:</label>
+        <input placeholder="Enter your password" class="rounded-xl border-2 border-gray-100 mt-2 p-2 bg-transparent" type="password" name="password" id="password" required>
+      </div>
+      <div class="flex items-center mt-8 text-black py-2">
+        <!-- Case à cocher pour isAdmin -->
+        <label for="isAdmin">Register as Admin:</label>
+        <input type="checkbox" name="isAdmin" id="isAdmin" class="ml-3 accent-pink-500" value="true">
+      </div>
+        <!-- Bouton de soumission -->
+        <div>
+          <button class="active:scale-[.98] active:duration-75 transition-all hover:scale-[1.01] ease-in-out w-full text-white rounded-xl my-5 py-2 bg-blue-600">
+            <input type="submit" value="Register">
+          </button>
+        </div>
+        <!-- Lien vers la page de connexion (si applicable) -->
+      <div class="flex justify-center text-gray-400 py-2">
+        <p>Already have an account? <a class="text-blue-600 underline" href="/login"> Login</a></p>
+    </div>
+      </form>
+      
+    </div>
+      
+      <div class="hidden sm:block">
+        <img class="w-full h-full object-cover" src="/registerImage.jpg" alt="Property Image">
+      </div>
+  </div>
   </body>
 </html>
