@@ -38,9 +38,18 @@
     <section class="mb-20">
       <div class="container mx-auto">
         <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-4 lg:gap-14">
-          <a href="">
-            <%- include('./partials/annonceCarte.ejs'); %>
-          </a>
+
+
+          <% annonces.forEach(function(annonce) { %>
+            <a href="/annonces/<%= annonce._id %>">
+              <%- include('./partials/annonceCarte.ejs', {annonce: annonce}); %>
+            </a>
+          <% }); %>
+
+         
+
+
+
         </div>
       </div>
     </section>
