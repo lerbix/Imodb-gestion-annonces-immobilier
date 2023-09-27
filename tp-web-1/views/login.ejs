@@ -2,26 +2,50 @@
 <html>
   <head>
     <title>Login</title>
+    <link href="/style.css" rel="stylesheet">
     <%- include('./partials/head.ejs'); %>
   </head>
   <body>
-    <h1>Login</h1>
+    
+    <div class="grid grid-cols-1 sm:grid-cols-2 h-screen w-full">
+      <div class="hidden sm:block">
+        <img class="w-full h-full object-cover" src="/image.jpg" alt="Property Image">
+      </div>
+      <div class="bg-gray-100 flex flex-col justify-center">
+        <!-- Formulaire de connexion -->
+        <form class="bg-white max-w-[400px] w-full mx-auto p-20 px-6 rounded-3xl border-gray-100" action="/login" method="POST">
+          <h2 class="text-4xl text-black font-bold text-center">LOG-IN</h2>
+          <!-- Error message container -->
+        <div class="error-message">
+          <% if (error) { %>
+            <p class="text-red-500"><%= error %></p>
+          <% } %>
+        </div>
+          <!-- Champ nom d'utilisateur -->
+          <div class="flex flex-col mt-8 text-black py-2">
+            <label for="username">Username:</label>
+            <input placeholder="Enter your email" class="rounded-xl border-2 border-gray-100 mt-2 p-2 bg-transparent" type="text" name="username" id="username" required>
+          </div>
 
-    <!-- Formulaire de connexion -->
-    <form action="/login" method="POST">
-      <!-- Champ nom d'utilisateur -->
-      <label for="username">Username:</label>
-      <input type="text" name="username" id="username" required>
+          <!-- Champ mot de passe -->
+            <div class="flex flex-col text-black py-2">
+              <label for="password">Password:</label>
+              <input placeholder="Enter your password" class="rounded-xl border-2 border-gray-100 mt-2 p-2 bg-transparent" type="password" name="password" id="password" required>
+            </div>
 
-      <!-- Champ mot de passe -->
-      <label for="password">Password:</label>
-      <input type="password" name="password" id="password" required>
+            <!-- Lien vers la page d'inscription (si applicable) -->
+            <div class="flex justify-center text-gray-400 py-2">
+              <p>Don't have an account? <a class="text-blue-600 underline" href="/register">Register</a></p>
+            </div>
 
-      <!-- Bouton de soumission -->
-      <input type="submit" value="Login">
-    </form>
-
-    <!-- Lien vers la page d'inscription (si applicable) -->
-    <p>Don't have an account? <a href="/register">Register</a></p>
+          <!-- Bouton de soumission -->
+          <div>
+            <button class="active:scale-[.98] active:duration-75 transition-all hover:scale-[1.01] ease-in-out w-full text-white rounded-xl my-5 py-2 bg-blue-600">
+              <input type="submit" value="Log In">
+            </button>
+          </div>
+        </form>
+  </div>
+  </div>
   </body>
 </html>
