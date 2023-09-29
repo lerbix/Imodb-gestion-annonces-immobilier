@@ -17,6 +17,7 @@ router.get('/add', function(req, res) {
 });
 
 
+router.post('/add', createAnnonce);
 
 
 
