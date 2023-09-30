@@ -5,6 +5,7 @@ var {
   getAllAnnonces,
   createAnnonce,
   getAnnonceInfo,
+  supprimerAnnonces,
 } = require("../controler/annoncesController");
 const annonces = require("../models/annonces");
 
@@ -30,5 +31,7 @@ router.get("/add", function (req, res) {
 router.post("/annonces/add", createAnnonce);
 
 router.get("/annonces/:id", getAnnonceInfo);
+
+router.get("/delete/:id", supprimerAnnonces);
 
 module.exports = router;

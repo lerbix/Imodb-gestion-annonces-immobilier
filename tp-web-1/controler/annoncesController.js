@@ -86,8 +86,25 @@ const getAnnonceInfo = async (req, res, next) => {
   }
 };
 
+const supprimerAnnonces = async (req, res, next) => {
+  const annonceId = req.params.id;
+
+  try {
+    const annonce = await Annonce.findByIdAndDelete(annonceId).exec();
+
+    if (!annonce) {
+      return res.status(404).send("Aucune annonce trouvée avec cet ID");
+    }
+    res.redirect("/");
+  } catch (err) {
+    console.error("Erreur lors de la suppression de l'annonce :", err);
+    return next(err);
+  }
+};
+
 module.exports = {
   getAllAnnonces,
   createAnnonce,
   getAnnonceInfo,
+  supprimerAnnonces,
 };
