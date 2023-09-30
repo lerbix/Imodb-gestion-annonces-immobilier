@@ -6,6 +6,7 @@ var {
   createAnnonce,
   getAnnonceInfo,
   supprimerAnnonces,
+  addForm,
 } = require("../controler/annoncesController");
 const annonces = require("../models/annonces");
 
@@ -13,20 +14,7 @@ const annonces = require("../models/annonces");
 router.get("/", getAllAnnonces);
 
 /* Crée une annonce*/
-router.get("/add", function (req, res) {
-  if (
-    req.session.passport === undefined ||
-    req.session.passport.isAdmin === false
-  )
-    res.redirect("/");
-  else {
-    console.log(req.session.passport.isAdmin);
-    res.render("add", {
-      title: "Add a Listing",
-      isAdmin: req.user ? req.user.isAdmin : undefined,
-    });
-  }
-});
+router.get("/add", addForm);
 
 router.post("/annonces/add", createAnnonce);
 

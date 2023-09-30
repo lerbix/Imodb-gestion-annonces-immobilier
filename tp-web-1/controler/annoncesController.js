@@ -59,6 +59,22 @@ const createAnnonce = (req, res, next) => {
     });
 };
 
+//add form
+const addForm = (req, res, next) => {
+  if (
+    req.session.passport === undefined ||
+    req.session.passport.isAdmin === false
+  )
+    res.redirect("/");
+  else {
+    console.log(req.session.passport.isAdmin);
+    res.render("add", {
+      title: "Add a Listing",
+      isAdmin: req.user ? req.user.isAdmin : undefined,
+    });
+  }
+};
+
 const getAnnonceInfo = async (req, res, next) => {
   const annonceId = req.params.id;
 
@@ -107,4 +123,5 @@ module.exports = {
   createAnnonce,
   getAnnonceInfo,
   supprimerAnnonces,
+  addForm,
 };
