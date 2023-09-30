@@ -48,7 +48,7 @@ const createAnnonce = (req, res, next) => {
   annonce
     .save()
     .then((data) => {
-      res.redirect("/annonces");
+      res.redirect("/");
     })
     .catch((err) => {
       res.status(500).send({
