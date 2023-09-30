@@ -118,7 +118,6 @@ const supprimerAnnonces = async (req, res, next) => {
   }
 };
 
-// recherche une annonce à l'aide d'un id
 const edit = (req, res) => {
   const id = req.params.id;
   Annonce.findById(id)
@@ -141,6 +140,24 @@ const edit = (req, res) => {
     });
 };
 
+const update = (req, res, next) => {
+  const id = req.params.id;
+  console.log("Updating Annonce with ID:", req.body);
+
+  Annonce.findByIdAndUpdate(id, req.body, { useFindAndModify: false }).then(
+    (data) => {
+      if (!data) {
+        res.status(404).send({
+          message: `Cannot update Annonce with id=${id}. Maybe Annonce was not found!`,
+        });
+      } else {
+        console.log("Annonce updated successfully:", data);
+        res.redirect("/");
+      }
+    }
+  );
+};
+
 module.exports = {
   getAllAnnonces,
   createAnnonce,
@@ -148,4 +165,5 @@ module.exports = {
   supprimerAnnonces,
   addForm,
   edit,
+  update,
 };
