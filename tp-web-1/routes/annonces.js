@@ -8,7 +8,7 @@ var {getAllAnnonces, getAnnonceInfo} =require('../controler/annoncesController')
 router.get('/', getAllAnnonces);
 
 
-router.get('/:id', getAnnonceInfo);
+router.get('/annonces/:id', getAnnonceInfo);
 
 
 module.exports = router;
