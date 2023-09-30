@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= title %></title>
+    <%- include('./partials/head.ejs'); %>
+    <!-- 
+      <link rel="stylesheet" href="/stylesheets/style.css">
+    -->
+    
+  </head>
+  <body>
+    <!--Navbar-->
+    <%- include('./partials/navbar.ejs'); %>
+    <div class="container mx-auto">
+      <div class="py-2 flex flex-col justify-center">
+        <!-- Formulaire d'annonce -->
+        <form
+          class="bg-white max-w-[700px] w-full mx-auto p-20 px-6 rounded-3xl border-gray-100"
+          action="/annonces/update/<%- data._id -%>"
+          enctype="multipart/form-data"
+          method="POST"
+        >
+          <h2 class="text-4xl text-black font-bold text-center">
+            Edit your listing
+          </h2>
+
+          <!-- Titre -->
+          <div class="flex flex-col mt-8 text-black py-2">
+            <label for="titre">Title:</label>
+            <input
+              placeholder="Enter the title"
+              class="rounded-xl border-2 border-gray-100 mt-2 p-2 bg-transparent"
+              type="text"
+              name="titre"
+              id="titre"
+              value="<%= data.titre %>"
+              required
+            />
+          </div>
+
+          <!--Type 2 cols -->
+          <div class="grid grid-cols-2 gap-5">
+            <!-- Type (Vente/Location) -->
+            <div class="flex flex-col mt-4 text-black py-2">
+              <label for="type">Type:</label>
+              <select
+                class="rounded-xl border-2 border-gray-100 mt-2 p-2 bg-transparent"
+                name="type"
+                id="type"
+                required
+              >
+                <option value="Vente" <%= data.type === 'Vente' ? 'selected' : '' %>>Vente</option>
+                <option value="Location" <%= data.type === 'Location' ? 'selected' : '' %>>Location</option>
+              </select>
+            </div>
+
+            <!-- Statut de publication -->
+            <div class="flex flex-col mt-4 text-black py-2">
+              <label for="statusPublication">Publication Status:</label>
+              <select
+                class="rounded-xl border-2 border-gray-100 mt-2 p-2 bg-transparent"
+                name="statusPublication"
+                id="statusPublication"
+                required
+              >
+                <option value="Publiée" <%= data.statusPublication === 'Publiée' ? 'selected' : '' %>>Publiée</option>
+                <option value="Non publiée" <%= data.statusPublication === 'Non publiée' ? 'selected' : '' %>>Non publiée</option>
+              </select>
+            </div>
+          </div>
+
+          <!-- Statut du bien -->
+          <div class="flex flex-col mt-4 text-black py-2">
+            <label for="statusBien">Property Status:</label>
+            <select
+              class="rounded-xl border-2 border-gray-100 mt-2 p-2 bg-transparent"
+              name="statusBien"
+              id="statusBien"
+              required
+            >
+              <option value="disponible" <%= data.statusBien === 'disponible' ? 'selected' : '' %>>Disponible</option>
+              <option value="loué" <%= data.statusBien === 'loué' ? 'selected' : '' %>>Loué</option>
+              <option value="vendu" <%= data.statusBien === 'vendu' ? 'selected' : '' %>>Vendu</option>
+            </select>
+          </div>
+
+          <!-- Description -->
+          <div class="flex flex-col mt-4 text-black py-2">
+            <label
+              for="descriptionLongue"
+              class="block mb-2 text-sm font-medium text-gray-900"
+              >Description</label
+            >
+            <textarea
+              id="descriptionLongue"
+              rows="6"
+              class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500"
+              placeholder="Une déscription détaillée de l'annonce..."
+              required
+            ><%= data.descriptionLongue %></textarea>
+          </div>
+
+          <!-- Prix -->
+          <div class="flex flex-col mt-4 text-black py-2">
+            <label for="prix">Price:</label>
+            <input
+              placeholder="Enter the price"
+              class="rounded-xl border-2 border-gray-100 mt-2 p-2 bg-transparent"
+              type="number"
+              name="prix"
+              value="<%= data.prix %>"
+              id="prix"
+              required
+            />
+          </div>
+
+          <!-- Date de disponibilité -->
+          <div class="flex flex-col mt-4 text-black py-2">
+            <label for="dateDisponibilite">Availability Date:</label>
+            <input
+              class="rounded-xl border-2 border-gray-100 mt-2 p-2 bg-transparent"
+              type="date"
+              name="dateDisponibilite"
+              id="dateDisponibilite"
+              value="<%= date %>"
+              required
+            />
+          </div>
+
+
+          <!-- Bouton de soumission -->
+          <div>
+            <button
+              class="active:scale-[.98] active:duration-75 transition-all hover:scale-[1.01] ease-in-out w-full text-white rounded-xl my-5 py-2 bg-blue-600"
+              type="submit"
+            >
+              Update
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <!--Footer -->
+    <%- include('./partials/footer.ejs'); %>
+  </body>
+</html>
+
+
