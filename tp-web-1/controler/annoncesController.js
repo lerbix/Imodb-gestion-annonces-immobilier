@@ -1,5 +1,5 @@
 const Annonce = require("../models/annonces");
-
+const moment = require("moment");
 const getAllAnnonces = async (req, res, next) => {
   try {
     const annonces = await Annonce.find({}).exec(); // Utilisez .exec() pour exécuter la requête
@@ -118,10 +118,34 @@ const supprimerAnnonces = async (req, res, next) => {
   }
 };
 
+// recherche une annonce à l'aide d'un id
+const edit = (req, res) => {
+  const id = req.params.id;
+  Annonce.findById(id)
+    .then((data) => {
+      if (!data)
+        res.status(404).send({ message: "Not found Annnonce with id " + id });
+      else {
+        res.render("update", {
+          data: data,
+          title: "Edit listing",
+          isAdmin: req.user ? req.user.isAdmin : undefined,
+          date: moment(data.dateDisponibilite).format("YYYY-MM-DD"),
+        });
+      }
+    })
+    .catch((err) => {
+      res
+        .status(500)
+        .send({ message: "Error retrieving Annonce with id=" + id });
+    });
+};
+
 module.exports = {
   getAllAnnonces,
   createAnnonce,
   getAnnonceInfo,
   supprimerAnnonces,
   addForm,
+  edit,
 };
