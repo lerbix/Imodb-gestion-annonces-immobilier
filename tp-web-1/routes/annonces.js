@@ -27,7 +27,7 @@ router.get("/add", function (req, res) {
   }
 });
 
-router.post("/add", createAnnonce);
+router.post("/annonces/add", createAnnonce);
 
 router.get("/annonces/:id", getAnnonceInfo);
 
