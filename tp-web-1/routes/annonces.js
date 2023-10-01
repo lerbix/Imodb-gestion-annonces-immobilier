@@ -19,7 +19,7 @@ const annonces = require("../models/annonces");
 router.get("/", getAllAnnonces);
 
 /* Crée une annonce*/
-router.get("/add", addForm);
+router.get("/annonces/add", addForm);
 
 router.post("/annonces/add", createAnnonce);
 

@@ -65,7 +65,7 @@ const addForm = (req, res, next) => {
     req.session.passport === undefined ||
     req.session.passport.isAdmin === false
   )
-    res.redirect("/");
+    res.redirect("/login");
   else {
     console.log(req.session.passport.isAdmin);
     res.render("add", {
