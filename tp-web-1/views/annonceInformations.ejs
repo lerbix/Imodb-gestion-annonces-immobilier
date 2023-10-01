@@ -11,7 +11,7 @@
     <!--Navbar-->
     <%- include('./partials/navbar.ejs'); %>
     <section>
-      <div class="container mx-auto min-h-[800px] px-1 mb-14">
+      <div class="container mt-4 mx-auto min-h-[800px] px-1 mb-14">
         <!-- Titre et bouttons -->
         <div
           class="flex flex-col lg:flex-row lg:items-center lg:justify-between px-4 py-2"
@@ -201,7 +201,7 @@
                   </svg>
                 </div>
                 <div class="flex-1 gap-x-3">
-                  <%- annonce.dateDisponibilite %>
+                  <%- annonce.dateDisponibilite.toDateString() %>
                 </div>
               </div>
 
@@ -225,7 +225,7 @@
                     />
                   </svg>
                 </div>
-                <div class="flex-1 gap-x-3 text-center">
+                <div class="flex-1 gap-x-3 text-center text-red-500 font-semibold">
                   <%- annonce.prix %>
                 </div>
               </div>
