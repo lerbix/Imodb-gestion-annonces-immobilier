@@ -31,4 +31,10 @@ router.get("/annonces/update/:id", checkIfAuthenticated, edit);
 
 router.post("/annonces/update/:id", update);
 
+
+router.get('/about', function(req, res, next) {
+  res.render('about', { title: "About Us", isAdmin: req.user ? req.user.isAdmin : undefined });
+});
+
+
 module.exports = router;
