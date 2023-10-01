@@ -1,7 +1,9 @@
 <!--Carte Annonce-->
-<div class="bg-white shadow-1 p-5 rounded-lg w-full max-w-[400px] mx-auto cursor-pointer hover:shadow-2xl transition ">
+<div
+  class="bg-white shadow-1 p-5 rounded-lg w-full max-w-[400px] mx-auto cursor-pointer hover:shadow-2xl transition shadow ">
   <!--Image annonce-->
-  <img src="/images/<%= annonce.photos %>" alt="house photo" class="mb-8 rounded-xl">
+  <img src="/images/<%= annonce.photos %>" alt="house photo"
+    class="mb-8 rounded-xl">
   <!--Title -->
   <div class="mb-2 font-bold">
     <%= annonce.titre %>
@@ -28,7 +30,7 @@
     <div class="mb-2 flex items-center text-gray-600 gap-1">
       <!--Icone -->
       <div>
-        <img src="/images/icons/calendar.svg" alt="" class="w-4">
+        <img src="/images/icons/calendar.svg" alt class="w-4">
       </div>
       <!--Date-->
       <div class="text-[14px]">
@@ -37,7 +39,8 @@
     </div>
 
     <!-- Prix -->
-    <div class="mb-2 flex items-center justify-center text-gray-600 gap-1 py-1 px-2 bg-cyan-200 rounded-xl">
+    <div
+      class="mb-2 flex items-center justify-center text-gray-600 gap-1 py-1 px-2 bg-cyan-200 rounded-xl">
       <!--Date-->
       <div class="text-[14px] font-bold">
         <%= annonce.prix %>
