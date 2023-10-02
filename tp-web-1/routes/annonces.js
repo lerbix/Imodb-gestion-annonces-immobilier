@@ -12,6 +12,8 @@ var {
   addForm,
   edit,
   update,
+  poserQuestion,
+  repondreQuestion
 } = require("../controler/annoncesController");
 const annonces = require("../models/annonces");
 
@@ -30,6 +32,10 @@ router.get("/delete/:id", supprimerAnnonces);
 router.get("/annonces/update/:id", checkIfAuthenticated, edit);
 
 router.post("/annonces/update/:id", update);
+
+router.post("/annonces/poserQuestion/:id", checkIfAuthenticated , poserQuestion);
+
+router.post("/annonces/repondreQuestion/:id", checkIfAuthenticated , repondreQuestion);
 
 
 router.get('/about', function(req, res, next) {
