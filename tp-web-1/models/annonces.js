@@ -59,9 +59,19 @@ const annonceSchema = new Schema({
     questions: [                    
         {
         "_id": ObjectId,              
-        "utilisateur_id": ObjectId,   
+        "utilisateur_id": ObjectId,
+        "utilisateur_username": String,
         "question": String,           
-        "date": Date                  
+        "date": Date, 
+        "reponses": [
+            {
+                "question_id": ObjectId,            
+                "agent_immobilier_id": ObjectId, 
+                "agent_immobilier_username": String,
+                "reponse": String,            
+                "date": Date             
+            }
+        ],           
         }
     ],
 
@@ -69,7 +79,8 @@ const annonceSchema = new Schema({
     // des réponses apportées par l’agent immobilier.
     reponses: [                     
         {
-        "_id": ObjectId,              
+        "_id": ObjectId,  
+        "question_id": ObjectId,            
         "agent_immobilier_id": ObjectId, 
         "reponse": String,            
         "date": Date                  
