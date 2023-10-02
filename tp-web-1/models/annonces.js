@@ -50,10 +50,10 @@ const annonceSchema = new Schema({
     },
 
     // des photos (éventuellement),
-    photos: {
+    photos: [{
         type: String,
         required: false,
-    },
+    }],
 
     // des questions posées par des utilisateurs,
     questions: [                    
