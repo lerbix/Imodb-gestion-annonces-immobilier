@@ -18,6 +18,7 @@
           class="bg-white max-w-[700px] w-full mx-auto p-20 px-6 rounded-3xl border-gray-100"
           action="/annonces/add"
           method="POST"
+          enctype="multipart/form-data"
         >
           <h2 class="text-4xl text-black font-bold text-center">
             Ajouter une Annonce
@@ -159,7 +160,7 @@
                     SVG, PNG, JPG or GIF (MAX. 800x400px)
                   </p>
                 </div>
-                <input id="dropzone-file" type="file" class="hidden" />
+                <input id="dropzone-file" name="photos" accept="image/*" multiple type="file" class="hidden" />
               </label>
             </div>
           </div>
