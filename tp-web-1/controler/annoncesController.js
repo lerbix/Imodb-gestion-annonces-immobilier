@@ -33,6 +33,9 @@ const createAnnonce = (req, res, next) => {
       .send({ message: "Tous les champs doivent être remplis !" });
   }
 
+  // You can access the array of uploaded files using req.files
+  const photos = req.files.map((file) => file.filename);
+
   // Créer un objet Annonce
   const annonce = new Annonce({
     titre: req.body.titre,
@@ -42,7 +45,7 @@ const createAnnonce = (req, res, next) => {
     descriptionLongue: req.body.descriptionLongue,
     prix: req.body.prix,
     dateDisponibilite: req.body.dateDisponibilite,
-    photos: "hero.jpg",
+    photos: photos,
   });
 
   // Enregistrer l'objet dans la base de données
