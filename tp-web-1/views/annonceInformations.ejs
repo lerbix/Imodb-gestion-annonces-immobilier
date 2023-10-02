@@ -228,14 +228,17 @@
               </div>
             </div>
             <!--Posez votre questions -->
-            <form method="post">
+            <form action="/annonces/poserQuestion/<%- annonce._id -%>" method="post">
               <div
                 class="px-4 my-2 grid grid-cols-2 md:grid-cols-4 gap-1 md:gap-8">
                 <input type="text" id="question-input"
-                  placeholder="Rédigez votre réponse "
+                  placeholder="Rédigez votre question "
+                  name="question"
                   class="block  col-span-3 w-full p-2 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 sm:text-xs ">
                 <button
-                  class="text-white bg-indigo-700 hover:bg-indigo-800  focus:outline-none  font-medium rounded-lg text-sm px-5  py-2.5 text-center inline-flex justify-center items-center mr-2">
+                  class="text-white bg-indigo-700 hover:bg-indigo-800  focus:outline-none  font-medium rounded-lg text-sm px-5  py-2.5 text-center inline-flex justify-center items-center mr-2" type="submit">
+
+                  
                   <svg class="w-3 h-3 text-white mr-4  "
                     aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
                     fill="none" viewBox="0 0 8 14">
@@ -243,7 +246,7 @@
                       stroke-linejoin="round" stroke-width="2"
                       d="m1 13 5.7-5.326a.909.909 0 0 0 0-1.348L1 1" />
                   </svg>
-                  Répondre
+                  Envoyer
                 </button>
               </div>
             </form>
@@ -270,6 +273,127 @@
 
               </div>
             </div>
+
+
+            <% annonce.questions.forEach(function(question) { %>
+
+              <div class="grid col-span-1 space-y-3 p-2">
+
+                <div class="p-4 shadow rounded-xl">
+  
+                  <div
+                    class="flex justify-center items-center">
+                    <div>
+                      <svg
+                        class="w-[40px] h-[40px]"
+                        aria-hidden="true"
+                        xmlns="http://www.w3.org/2000/svg"
+                        fill="currentColor"
+                        viewBox="0 0 20 20">
+                        <path
+                          d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5ZM9.5 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM12 15H8a1 1 0 0 1 0-2h1v-3H8a1 1 0 0 1 0-2h2a1 1 0 0 1 1 1v4h1a1 1 0 0 1 0 2Z" />
+                      </svg>
+                    </div>
+  
+                    <div class=" w-full flex flex-col  ">
+
+                      <div class="flex w-full items-center justify-between space-x-10 ">
+                         <!--Username-->
+                         
+                      <div class="text-xl font-semibold ml-4 ">
+                        <span class="bg-gray-100 text-gray-800 text-xs font-medium inline-flex items-center px-2.5 py-1 rounded mr-2 mb-1">
+                          
+
+                        <svg class="w-2.5 h-2.5 mr-1.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 18">
+                          <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 8a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7Zm-2 3h4a4 4 0 0 1 4 4v2H1v-2a4 4 0 0 1 4-4Z"/>
+                        </svg>
+                        <%- question.utilisateur_username %>
+                      </span>
+                      
+                      </div>
+
+                       <!--Date-->
+                       <div class="bg-gray-100 text-gray-800 text-xs font-medium mr-2 px-2.5 py-0.5 rounded ">
+                        <%= question.date.toLocaleString('fr-FR')%>
+                      </div>
+
+                      </div>
+                     
+                      
+  
+                      <!--la question -->
+                      <div class=" ml-4 sm:ml-10 mb-2 text-sm">
+                        <%- question.question %>
+                      </div>
+  
+                      <!-- les réponses -->
+  
+                      <% question.reponses.forEach(function(reponse) { %>
+                        <div
+                        class="ml-14 mb-1 bg-indigo-100 text-indigo-800 text-xs font-medium mr-2 px-2.5 py-2 rounded dark:bg-indigo-900 dark:text-indigo-300
+                        ">
+
+                        <div class="flex items-center justify-between">
+                          <span class="bg-gray-100 text-gray-800 text-xs font-medium inline-flex items-center px-2.5 py-1 rounded mr-2 mb-1">
+                              <svg class="w-2.5 h-2.5 mr-1.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 14 18">
+                              <path d="M7 9a4.5 4.5 0 1 0 0-9 4.5 4.5 0 0 0 0 9Zm2 1H5a5.006 5.006 0 0 0-5 5v2a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-2a5.006 5.006 0 0 0-5-5Z"/>
+                            </svg>
+                            <%- reponse.agent_immobilier_username %>
+                          </span>
+
+                          
+
+                          <span class="bg-gray-100 text-gray-800 text-xs font-medium mr-2 px-2.5 py-0.5 rounded "> <%- reponse.date.toLocaleString('fr-FR')%></span>
+                        </div>
+
+                        <div class="ml-2">
+                          <%- reponse.reponse %>
+                        </div>
+                        
+                      </div>
+                    <% }); %>
+
+                      
+                    </div>
+  
+                  </div>
+                  <% if (isAdmin) { %>
+                  <!-- Input for reponse -->
+
+                  <form action="/annonces/repondreQuestion/<%- question._id %>" method="post">
+                    <div
+                    class="ml-10 my-2 grid grid-cols-2 md:grid-cols-4 gap-1 md:gap-8">
+                    <input type="text" id="small-input"
+                      placeholder="Rédigez votre réponse "
+                      name="reponse"
+                      class="block  col-span-3 w-full p-2 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 sm:text-xs ">
+                      <input type="hidden" name="annonceId" value="<%- annonce._id %>">
+  
+                    <button type="submit"
+                      class="text-white bg-indigo-700 hover:bg-indigo-800  focus:outline-none  font-medium rounded-lg text-sm px-5  py-2.5 text-center inline-flex justify-center items-center mr-2">
+                      <svg class="w-3 h-3 text-white mr-4  "
+                        aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+                        fill="none" viewBox="0 0 8 14">
+                        <path stroke="currentColor" stroke-linecap="round"
+                          stroke-linejoin="round" stroke-width="2"
+                          d="m1 13 5.7-5.326a.909.909 0 0 0 0-1.348L1 1" />
+                      </svg>
+                      Répondre
+                    </button>
+
+
+                  </div>
+                  </form>
+                  
+                  <% } %>
+                </div>
+  
+              </div>
+
+             
+          <% }); %>
+
+
 
             <!-- listes des questions avec reponses -->
             <div class="grid col-span-1 space-y-3 p-2">
