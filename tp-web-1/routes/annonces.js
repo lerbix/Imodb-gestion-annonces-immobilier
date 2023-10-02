@@ -13,11 +13,11 @@ var {
   edit,
   update,
   poserQuestion,
-  repondreQuestion
+  repondreQuestion,
 } = require("../controler/annoncesController");
 const annonces = require("../models/annonces");
 
-const upload = require("../controler/multerController")
+const upload = require("../controler/multerController");
 
 /* all annonces . */
 router.get("/", getAllAnnonces);
@@ -25,7 +25,7 @@ router.get("/", getAllAnnonces);
 /* Crée une annonce*/
 router.get("/annonces/add", addForm);
 
-router.post("/annonces/add", upload,createAnnonce);
+router.post("/annonces/add", upload, createAnnonce);
 
 router.get("/annonces/:id", getAnnonceInfo);
 
@@ -35,14 +35,19 @@ router.get("/annonces/update/:id", checkIfAuthenticated, edit);
 
 router.post("/annonces/update/:id", update);
 
-router.post("/annonces/poserQuestion/:id", checkIfAuthenticated , poserQuestion);
+router.post("/annonces/poserQuestion/:id", checkIfAuthenticated, poserQuestion);
 
-router.post("/annonces/repondreQuestion/:id", checkIfAuthenticated , repondreQuestion);
+router.post(
+  "/annonces/repondreQuestion/:id",
+  checkIfAuthenticated,
+  repondreQuestion
+);
 
-
-router.get('/about', function(req, res, next) {
-  res.render('about', { title: "About Us", isAdmin: req.user ? req.user.isAdmin : undefined });
+router.get("/about", function (req, res, next) {
+  res.render("about", {
+    title: "About Us",
+    isAdmin: req.user ? req.user.isAdmin : undefined,
+  });
 });
-
 
 module.exports = router;

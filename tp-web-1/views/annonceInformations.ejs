@@ -3,6 +3,11 @@
   <head>
     <title><%= title %></title>
     <%- include('./partials/head.ejs'); %>
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.8.1/flowbite.min.css"
+      rel="stylesheet"
+    />
+
     <!-- 
       <link rel="stylesheet" href="/stylesheets/style.css">
     -->
@@ -17,6 +22,20 @@
           class="flex flex-col lg:flex-row lg:items-center lg:justify-between px-4 py-2"
         >
           <div class="text-3xl font-semibold mb-4"><%- annonce.titre %></div>
+
+          <% if (isAdmin) { %> <% if (annonce.statusPublication == 'Publiée') {
+          %>
+          <span
+            class="bg-green-100 text-green-800 text-md font-medium mr-2 px-2.5 py-0.5 rounded-full"
+            ><%- annonce.statusPublication %>
+          </span>
+          <% } else { %>
+          <span
+            class="bg-red-100 text-red-800 text-md font-medium mr-2 px-2.5 py-0.5 rounded-full"
+            ><%- annonce.statusPublication %>
+          </span>
+          <% } %> <% } %>
+
           <div class="mb-4 lg:mb-0 flex gap-x-2 text-sm">
             <% if(isAdmin) { %>
             <a
@@ -536,5 +555,7 @@
 
     <!--Footer -->
     <%- include('./partials/footer.ejs'); %>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.8.1/flowbite.min.js"></script>
   </body>
 </html>

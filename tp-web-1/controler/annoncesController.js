@@ -3,7 +3,9 @@ const moment = require("moment");
 const mongoose = require("mongoose");
 const getAllAnnonces = async (req, res, next) => {
   try {
-    const annonces = await Annonce.find({}).exec(); // Utilisez .exec() pour exécuter la requête
+    const annonces = await Annonce.find({
+      statusPublication: "Publiée",
+    }).exec(); // Utilisez .exec() pour exécuter la requête
 
     res.render("annonces", {
       title: "Annonces",
@@ -162,20 +164,16 @@ const update = (req, res, next) => {
   );
 };
 
-
-const poserQuestion = (req, res, next) =>{
-
+const poserQuestion = (req, res, next) => {
   const annonceId = req.params.id;
   const userId = req.user._id;
   const userName = req.user.username;
-  const {question} = req.body;
-  console.log('lerni')
+  const { question } = req.body;
+  console.log("lerni");
   console.log(req.user);
 
-
-
-   // Créez un objet question 
-   const nouvelleQuestion = {
+  // Créez un objet question
+  const nouvelleQuestion = {
     _id: new mongoose.Types.ObjectId(),
     utilisateur_id: userId,
     utilisateur_username: userName,
@@ -183,13 +181,12 @@ const poserQuestion = (req, res, next) =>{
     date: new Date(),
     reponses: [], // Initialisez le tableau de réponses à vide
   };
-  
 
   // Trouvez l'annonce par son ID
   Annonce.findById(annonceId)
     .then((annonce) => {
       if (!annonce) {
-        return res.status(404).json({ message: 'Annonce introuvable' });
+        return res.status(404).json({ message: "Annonce introuvable" });
       }
 
       // Ajoutez la nouvelle question au tableau de questions de l'annonce
@@ -199,57 +196,59 @@ const poserQuestion = (req, res, next) =>{
       return annonce.save();
     })
     .then(() => {
-      res.redirect('/annonces/' + annonceId);
+      res.redirect("/annonces/" + annonceId);
     })
     .catch((error) => {
       console.error(error);
-      res.status(500).json({ message: "Une erreur s'est produite lors de l'ajout de la question" });
+      res.status(500).json({
+        message: "Une erreur s'est produite lors de l'ajout de la question",
+      });
     });
-
 };
 
-
 const repondreQuestion = (req, res, next) => {
-
-  const {annonceId, reponse} = req.body;
+  const { annonceId, reponse } = req.body;
   const questionId = req.params.id;
 
-  Annonce.findById(annonceId).then((annonce) => {
-    if (!annonce) {
-      return res.status(404).json({ message: 'Annonce introuvable' });
-    }
+  Annonce.findById(annonceId)
+    .then((annonce) => {
+      if (!annonce) {
+        return res.status(404).json({ message: "Annonce introuvable" });
+      }
 
-    // Trouvez la question par son ID
-    const question = annonce.questions.find((question) => question._id.toString() === questionId);
+      // Trouvez la question par son ID
+      const question = annonce.questions.find(
+        (question) => question._id.toString() === questionId
+      );
 
-    if (!question) {
-      return res.status(404).json({ message: 'Question introuvable' });
-    }
+      if (!question) {
+        return res.status(404).json({ message: "Question introuvable" });
+      }
 
-    // Créez un objet réponse
-    const nouvelleReponse = {
-      question_id: questionId,
-      agent_immobilier_id: req.user.id,
-      agent_immobilier_username: req.user.username,
-      reponse: reponse,
-      date: new Date(),
-    };
+      // Créez un objet réponse
+      const nouvelleReponse = {
+        question_id: questionId,
+        agent_immobilier_id: req.user.id,
+        agent_immobilier_username: req.user.username,
+        reponse: reponse,
+        date: new Date(),
+      };
 
-    // Ajoutez la nouvelle réponse au tableau de réponses de la question
-    question.reponses.push(nouvelleReponse);
+      // Ajoutez la nouvelle réponse au tableau de réponses de la question
+      question.reponses.push(nouvelleReponse);
 
-    // Sauvegardez l'annonce mise à jour dans la base de données
-    return annonce.save();
-
-
-  }).then(()=>{
-    res.redirect('/annonces/' + annonceId);
-  }).catch(error => {
-    res.status(500).json({ message: "Une erreur s'est produite lors de l'ajout de la réponse" });
-  });
-    
-
-}
+      // Sauvegardez l'annonce mise à jour dans la base de données
+      return annonce.save();
+    })
+    .then(() => {
+      res.redirect("/annonces/" + annonceId);
+    })
+    .catch((error) => {
+      res.status(500).json({
+        message: "Une erreur s'est produite lors de l'ajout de la réponse",
+      });
+    });
+};
 
 module.exports = {
   getAllAnnonces,
@@ -260,5 +259,5 @@ module.exports = {
   edit,
   update,
   poserQuestion,
-  repondreQuestion
+  repondreQuestion,
 };
