@@ -17,13 +17,15 @@ var {
 } = require("../controler/annoncesController");
 const annonces = require("../models/annonces");
 
+const upload = require("../controler/multerController")
+
 /* all annonces . */
 router.get("/", getAllAnnonces);
 
 /* Crée une annonce*/
 router.get("/annonces/add", addForm);
 
-router.post("/annonces/add", createAnnonce);
+router.post("/annonces/add", upload,createAnnonce);
 
 router.get("/annonces/:id", getAnnonceInfo);
 
