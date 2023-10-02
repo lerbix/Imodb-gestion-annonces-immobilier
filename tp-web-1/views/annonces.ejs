@@ -3,6 +3,10 @@
   <head>
     <title><%= title %></title>
     <%- include('./partials/head.ejs'); %>
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.8.1/flowbite.min.css"
+      rel="stylesheet"
+    />
     <!-- 
       <link rel="stylesheet" href="/stylesheets/style.css">
     -->
@@ -48,11 +52,9 @@
 
         <% if (annonces.length != 0) { %>
         <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-4 lg:gap-14">
-          <% annonces.forEach(function(annonce) { %>
-          <a href="/annonces/<%= annonce._id %>">
-            <%- include('./partials/annonceCarte.ejs', {annonce: annonce}); %>
-          </a>
-          <% }); %>
+          <% annonces.forEach(function(annonce) { %> <%-
+          include('./partials/annonceCarte.ejs', {annonce: annonce}); %> <% });
+          %>
         </div>
         <% } else { %>
 
@@ -72,7 +74,7 @@
         <% } %>
       </div>
     </section>
-
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.8.1/flowbite.min.js"></script>
     <!--Footer -->
     <%- include('./partials/footer.ejs'); %>
   </body>
