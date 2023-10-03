@@ -6,3 +6,6 @@ package-lock.json
 
 # ignore .vscode
 .vscode/
+
+# ignore public/images/uploads
+tp-web-1/public/images/uploads/
