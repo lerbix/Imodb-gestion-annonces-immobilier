@@ -1,15 +1,53 @@
-var express = require('express');
+var express = require("express");
 var router = express.Router();
-var {checkIfAuthenticated}= require('../controler/authControler');
+
+const Annonce = require("../models/annonces");
+
+var { checkIfAuthenticated } = require("../controler/authControler");
+var {
+  getAllAnnonces,
+  createAnnonce,
+  getAnnonceInfo,
+  supprimerAnnonces,
+  addForm,
+  edit,
+  update,
+  poserQuestion,
+  repondreQuestion,
+} = require("../controler/annoncesController");
+const annonces = require("../models/annonces");
+
+const upload = require("../controler/multerController");
 
 /* all annonces . */
-router.get('/', checkIfAuthenticated, function(req, res, next) {
+router.get("/", getAllAnnonces);
 
-    // TODO : get all annonces from database 
+/* Crée une annonce*/
+router.get("/annonces/add", addForm);
 
-    
-    res.render('annonces', { title: 'Anonnces : ' + req.user.username, admin: req.user.isAdmin });
+router.post("/annonces/add", upload, createAnnonce);
+
+router.get("/annonces/:id", getAnnonceInfo);
+
+router.get("/delete/:id", supprimerAnnonces);
+
+router.get("/annonces/update/:id", checkIfAuthenticated, edit);
+
+router.post("/annonces/update/:id", update);
+
+router.post("/annonces/poserQuestion/:id", checkIfAuthenticated, poserQuestion);
+
+router.post(
+  "/annonces/repondreQuestion/:id",
+  checkIfAuthenticated,
+  repondreQuestion
+);
+
+router.get("/about", function (req, res, next) {
+  res.render("about", {
+    title: "About Us",
+    isAdmin: req.user ? req.user.isAdmin : undefined,
+  });
 });
-
 
 module.exports = router;

@@ -50,31 +50,37 @@ const annonceSchema = new Schema({
     },
 
     // des photos (éventuellement),
-    photos: {
+    photos: [{
         type: String,
         required: false,
-    },
+    }],
 
     // des questions posées par des utilisateurs,
     questions: [                    
         {
         "_id": ObjectId,              
-        "utilisateur_id": ObjectId,   
+        "utilisateur_id": ObjectId,
+        "utilisateur_username": String,
         "question": String,           
-        "date": Date                  
+        "date": Date, 
+        "reponses": [
+            {
+                "question_id": ObjectId,            
+                "agent_immobilier_id": ObjectId, 
+                "agent_immobilier_username": String,
+                "reponse": String,            
+                "date": Date             
+            }
+        ],           
         }
     ],
 
 
-    // des réponses apportées par l’agent immobilier.
-    reponses: [                     
-        {
-        "_id": ObjectId,              
-        "agent_immobilier_id": ObjectId, 
-        "reponse": String,            
-        "date": Date                  
-        }
-    ],
+    "agent_immobilier" : {
+        type: Schema.Types.ObjectId,
+        ref: 'user'
+    },
+
 });
 
 module.exports = mongoose.model('annonces', annonceSchema);

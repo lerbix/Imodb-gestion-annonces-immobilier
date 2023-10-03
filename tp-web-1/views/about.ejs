@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= title %></title>
+    <%- include('./partials/head.ejs'); %>
+    <!-- 
+      <link rel="stylesheet" href="/stylesheets/style.css">
+    -->
+  </head>
+  <body>
+
+    <!--Navbar-->
+    <%- include('./partials/navbar.ejs'); %>
+
+    <section class="h-full max-h-[640px] sm:mt-5 md:mt-5 mb-10 xl:mb-10">
+      <div class="flex flex-col lg:flex-row">
+        <!-- First part description site -->
+        <div
+          class="lg:ml-8 xl:ml-[135px] flex flex-col items-center lg:items-start text-center lg:text-left justify-center flex-1 px-4 lg:px-0">
+          <h1 class="text-4xl lg:text-[58px] font-semibold leading-none mb-6">
+            <span class="text-cyan-700">Rent</span> Your Dream House with us
+          </h1>
+          <p class="max-w-[400px]">
+            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Veniam
+            aliquid aperiam impedit velit blanditiis reiciendis minus
+            praesentium facilis nostrum odio consequatur tempora, voluptatem
+            maiores ex minima nihil ipsa ratione doloremque!
+          </p>
+        </div>
+
+        <!-- Hero Image -->
+        <div class="hidden flex-1 lg:flex justify-end items-end ">
+          <img src="/images/hero.jpg" alt="hero"
+            class="w-full h-full object-cover object-center">
+        </div>
+      </div>
+    </section>
+
+    
+
+    <!--Listes d'annonces -->
+    <section class="mb-20">
+      <div class="container mx-auto">
+
+        <div class="text-4xl py-6 text-center font-semibold leading-none  mb-5">
+          <span class="text-cyan-800">About</span> Us
+        </div>
+        
+
+        
+
+        
+      </div>
+    </section>
+
+    <!--Footer -->
+    <%- include('./partials/footer.ejs'); %>
+
+  </body>
+</html>
