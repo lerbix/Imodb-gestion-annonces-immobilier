@@ -7,8 +7,6 @@ const getAllAnnonces = async (req, res, next) => {
       statusPublication: "Publiée",
     }).exec(); // Utilisez .exec() pour exécuter la requête
 
-    
-
     res.render("annonces", {
       title: "Annonces",
       annonces: annonces,
@@ -50,7 +48,7 @@ const createAnnonce = (req, res, next) => {
     prix: req.body.prix,
     dateDisponibilite: req.body.dateDisponibilite,
     photos: photos,
-    agent_immobilier: req.user._id
+    agent_immobilier: req.user._id,
   });
 
   // Enregistrer l'objet dans la base de données
@@ -88,17 +86,14 @@ const getAnnonceInfo = async (req, res, next) => {
   const annonceId = req.params.id;
 
   try {
-    
-    const annonce = await Annonce.
-    findById(annonceId).populate('agent_immobilier')
-    .exec();
-
+    const annonce = await Annonce.findById(annonceId)
+      .populate("agent_immobilier")
+      .exec();
 
     if (!annonce) {
       return res.status(404).send("Aucune annonce trouvée avec cet ID");
     }
 
- 
     // Si une annonce est trouvée, vous pouvez renvoyer les détails de l'annonce à la vue
     res.render("annonceInformations", {
       title: "Détails de l'annonce",
@@ -154,20 +149,57 @@ const edit = (req, res) => {
 
 const update = (req, res, next) => {
   const id = req.params.id;
-  console.log("Updating Annonce with ID:", req.body);
 
-  Annonce.findByIdAndUpdate(id, req.body, { useFindAndModify: false }).then(
-    (data) => {
-      if (!data) {
-        res.status(404).send({
-          message: `Cannot update Annonce with id=${id}. Maybe Annonce was not found!`,
+  // Fetch the existing Annonce by ID
+  Annonce.findById(id)
+    .then((existingAnnonce) => {
+      if (!existingAnnonce) {
+        return res.status(404).send({
+          message: `Cannot update Annonce with id=${id}. Annonce not found!`,
         });
-      } else {
-        console.log("Annonce updated successfully:", data);
-        res.redirect("/annonces/"+id);
       }
-    }
-  );
+
+      // Extract the existing photos
+      const existingPhotos = existingAnnonce.photos || [];
+
+      // Extract the new photos from the uploaded files
+      const newImages = req.files.map((file) => file.filename); // Assuming the filenames are stored in the 'filename' property
+
+      // Combine the existing and new photos
+      const updatedPhotos = existingPhotos.concat(newImages);
+
+      // Create an object with the fields you want to update, including 'images'
+      const updatedData = {
+        ...req.body, // Include any other fields you want to update
+        photos: updatedPhotos,
+      };
+
+      // Update the Annonce with the combined photos
+      Annonce.findByIdAndUpdate(id, updatedData, { useFindAndModify: false })
+        .then((data) => {
+          if (!data) {
+            return res.status(404).send({
+              message: `Cannot update Annonce with id=${id}. Annonce not found!`,
+            });
+          }
+          console.log("Annonce updated successfully:", data);
+          res.redirect("/annonces/" + id);
+        })
+        .catch((err) => {
+          // Handle errors
+          console.error("Error updating Annonce:", err);
+          res.status(500).send({
+            message: "Error updating Annonce",
+          });
+        });
+    })
+    .catch((err) => {
+      // Handle errors related to fetching the existing Annonce
+      console.error("Error fetching Annonce:", err);
+      res.status(500).send({
+        message: "Error fetching Annonce",
+      });
+    });
 };
 
 const poserQuestion = (req, res, next) => {
