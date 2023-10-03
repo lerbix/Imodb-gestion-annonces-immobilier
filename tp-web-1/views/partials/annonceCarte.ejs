@@ -81,7 +81,12 @@
     </div>
 
     <% } else { %>
-    <img src="/images/hero.jpg" alt="house photo" class="mb-8  rounded-xl">
+
+    <div class="relative w-full">
+      <img src="/images/uploads/<%= annonce.photos %>"" alt="house photo"
+        class="rounded-xl h-56 w-full">
+    </div>
+
     <% } %>
 
   </div>
