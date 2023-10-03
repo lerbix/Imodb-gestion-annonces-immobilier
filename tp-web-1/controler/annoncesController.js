@@ -164,7 +164,7 @@ const update = (req, res, next) => {
         });
       } else {
         console.log("Annonce updated successfully:", data);
-        res.redirect("/");
+        res.redirect("/annonces/"+id);
       }
     }
   );
