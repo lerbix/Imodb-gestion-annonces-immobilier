@@ -3,6 +3,9 @@
   class="bg-white shadow-1 p-5 rounded-lg w-full max-w-[420px] mx-auto cursor-pointer hover:shadow-2xl transition shadow">
   <!--Image annonce-->
   <div class="relative w-auto pb-3">
+
+    <% if (annonce.photos.length > 1) { %>
+
     <!-- Set a fixed height for the image container -->
     <div id="indicators" class="relative w-full" data-carousel="static">
       <!-- Carousel wrapper -->
@@ -76,6 +79,11 @@
         </span>
       </button>
     </div>
+
+    <% } else { %>
+    <img src="/images/hero.jpg" alt="house photo" class="mb-8  rounded-xl">
+    <% } %>
+
   </div>
   <a href="/annonces/<%= annonce._id %>">
     <!--Title -->
