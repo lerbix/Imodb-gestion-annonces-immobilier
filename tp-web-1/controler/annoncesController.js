@@ -7,8 +7,6 @@ const getAllAnnonces = async (req, res, next) => {
       statusPublication: "Publiée",
     }).exec(); // Utilisez .exec() pour exécuter la requête
 
-    
-
     res.render("annonces", {
       title: "Annonces",
       annonces: annonces,
@@ -50,7 +48,7 @@ const createAnnonce = (req, res, next) => {
     prix: req.body.prix,
     dateDisponibilite: req.body.dateDisponibilite,
     photos: photos,
-    agent_immobilier: req.user._id
+    agent_immobilier: req.user._id,
   });
 
   // Enregistrer l'objet dans la base de données
@@ -88,17 +86,14 @@ const getAnnonceInfo = async (req, res, next) => {
   const annonceId = req.params.id;
 
   try {
-    
-    const annonce = await Annonce.
-    findById(annonceId).populate('agent_immobilier')
-    .exec();
-
+    const annonce = await Annonce.findById(annonceId)
+      .populate("agent_immobilier")
+      .exec();
 
     if (!annonce) {
       return res.status(404).send("Aucune annonce trouvée avec cet ID");
     }
 
- 
     // Si une annonce est trouvée, vous pouvez renvoyer les détails de l'annonce à la vue
     res.render("annonceInformations", {
       title: "Détails de l'annonce",
@@ -164,7 +159,7 @@ const update = (req, res, next) => {
         });
       } else {
         console.log("Annonce updated successfully:", data);
-        res.redirect("/annonces/"+id);
+        res.redirect("/annonces/" + id);
       }
     }
   );
@@ -256,6 +251,25 @@ const repondreQuestion = (req, res, next) => {
     });
 };
 
+const getMesAnnonces = async (req, res, next) => {
+  try {
+    console.log("lerbi");
+    console.log(req.user._id);
+    const annonces = await Annonce.find({
+      agent_immobilier: req.user._id,
+    }).exec();
+
+    res.render("MesAnnonces", {
+      title: "Mes Annonces",
+      annonces: annonces,
+      isAdmin: req.user ? req.user.isAdmin : undefined,
+    });
+  } catch (err) {
+    console.error("Erreur lors de la récupération des annonces :", err);
+    return next(err);
+  }
+};
+
 module.exports = {
   getAllAnnonces,
   createAnnonce,
@@ -266,4 +280,5 @@ module.exports = {
   update,
   poserQuestion,
   repondreQuestion,
+  getMesAnnonces,
 };
