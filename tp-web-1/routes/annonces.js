@@ -14,6 +14,7 @@ var {
   update,
   poserQuestion,
   repondreQuestion,
+  getMesAnnonces,
 } = require("../controler/annoncesController");
 const annonces = require("../models/annonces");
 
@@ -24,6 +25,8 @@ router.get("/", getAllAnnonces);
 
 /* Crée une annonce*/
 router.get("/annonces/add", addForm);
+
+router.get("/annonces/mesAnnonces", checkIfAuthenticated, getMesAnnonces);
 
 router.post("/annonces/add", upload, createAnnonce);
 
