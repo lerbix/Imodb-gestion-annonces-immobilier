@@ -131,7 +131,7 @@
           <!--Images-->
           <div class="flex flex-col mt-4 ">
             <label for="dateDisponibilite">Images:</label>
-            <div x-data="dataFileDnD()" class=" py-2 border border-gray-200 rounded">
+            <div x-data="dataFileDnD()" class=" py-2 border border-gray-200 rounded mt-2">
             
               <div x-ref="dnd"
                   class="relative flex flex-col text-gray-400 border border-gray-200 border-dashed rounded cursor-pointer">
@@ -155,15 +155,21 @@
               </div>
                   <!-- Display selected images -->
                     <div class="flex flex-col mt-4">
-                      <label for="images">Selected Images:</label>
-                      <div class="flex flex-wrap gap-4 mt-2">
-                        <% data.photos.forEach((image, index) => { %>
-                          <div class="w-32">
-                            <img src="/images/uploads/<%= image %>" alt="Image <%= index + 1 %>" class="w-full h-auto" />
+                          <label class="pl-2" for="images">Selected Images:</label>
+                          <div class="flex flex-wrap gap-4 mt-2 justify-center">
+                              <% data.photos.forEach((image, index) => { %>
+                                  <div class="w-32 relative justify-center">
+                                      <img src="/images/uploads/<%= image %>" alt="Image <%= index + 1 %>" class="w-full h-[100px] object-cover" />
+                                      <div class="absolute bottom-0 left-0 right-0 flex flex-col p-2 text-xs bg-white bg-opacity-50">
+                                          <span class="w-full font-bold text-gray-900 truncate">
+                                              Image <%= index + 1 %>
+                                          </span>
+                                      </div>
+                                  </div>
+                              <% }); %>
                           </div>
-                        <% }); %>
                       </div>
-                    </div>
+
               <template x-if="files.length > 0">
                   <div class="grid grid-cols-2 gap-4 mt-4 md:grid-cols-6" @drop.prevent="drop($event)"
                       @dragover.prevent="$event.dataTransfer.dropEffect = 'move'">
