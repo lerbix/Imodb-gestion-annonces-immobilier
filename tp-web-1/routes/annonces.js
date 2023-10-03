@@ -33,7 +33,7 @@ router.get("/delete/:id", supprimerAnnonces);
 
 router.get("/annonces/update/:id", checkIfAuthenticated, edit);
 
-router.post("/annonces/update/:id", update);
+router.post("/annonces/update/:id", upload, update);
 
 router.post("/annonces/poserQuestion/:id", checkIfAuthenticated, poserQuestion);
 
