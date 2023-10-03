@@ -76,16 +76,11 @@ const annonceSchema = new Schema({
     ],
 
 
-    // des réponses apportées par l’agent immobilier.
-    reponses: [                     
-        {
-        "_id": ObjectId,  
-        "question_id": ObjectId,            
-        "agent_immobilier_id": ObjectId, 
-        "reponse": String,            
-        "date": Date                  
-        }
-    ],
+    "agent_immobilier" : {
+        type: Schema.Types.ObjectId,
+        ref: 'user'
+    },
+
 });
 
 module.exports = mongoose.model('annonces', annonceSchema);
