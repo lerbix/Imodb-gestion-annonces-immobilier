@@ -1,38 +1,49 @@
-var express = require('express');
+var express = require("express");
 var router = express.Router();
-var user = require('../models/user');
-var passport= require('passport');
-var {redirectIfAuthenticated} = require('../controler/authControler')
+var user = require("../models/user");
+var passport = require("passport");
+var { redirectIfAuthenticated } = require("../controler/authControler");
 
+router.post("/", (req, res, next) => {
+  passport.authenticate("local", (err, user, info) => {
+    if (err) {
+      // Handle any unexpected errors
+      console.error(err);
+      return res.render("error", { error: "An unexpected error occurred" });
+    }
 
-router.post('/', passport.authenticate('local'), function(req, res) {
-    // Check for authentication errors
-  if (!req.user) {
-    // Handle non-existent user or incorrect password
-    return res.redirect('/login?error=Invalid%20username%20or%20password');
-  }
-    req.session.save((err) => {
-        if (err) return res.render('/login');
-        req.session.passport.idUtilisateur = req.user._id;
-        req.session.passport.admin =req.user.isAdmin;
+    if (!user) {
+      // Authentication failed, redirect to login with an error message
+      return res.redirect("/login?error=Invalid%20username%20or%20password");
+    }
 
-        res.redirect('/');
+    req.logIn(user, (err) => {
+      if (err) {
+        console.error(err);
+        return res.render("error", {
+          error: "An unexpected error occurred during login",
+        });
+      }
+
+      req.session.passport.idUtilisateur = user._id;
+      req.session.passport.admin = user.isAdmin;
+
+      // Authentication succeeded, redirect to the desired page
+      return res.redirect("/");
     });
-
+  })(req, res, next);
 });
 
-router.get('/', redirectIfAuthenticated, function (req, res) {
-    const error = req.query.error;
-    res.render('login', { error, user: req.user });
+router.get("/", redirectIfAuthenticated, function (req, res) {
+  const error = req.query.error;
+  res.render("login", { error, user: req.user });
+});
+
+router.get("/logout", function (req, res) {
+  req.logout(function (err) {
+    if (err) return next(err);
+    res.redirect("/");
   });
-  
-
-router.get('/logout', function(req, res) {
-    req.logout(function(err) {
-        if (err)  return next(err);
-        res.redirect('/');
-    });
 });
-
 
 module.exports = router;
