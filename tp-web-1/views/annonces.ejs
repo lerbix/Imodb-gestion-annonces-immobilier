@@ -32,12 +32,13 @@
             est de vous offrir une expérience de recherche de location sans
             tracas
           </p>
-          <a href="#Annonces"
+          <a href="#annonces"
             class="inline-flex items-center justify-center px-5 py-3 text-base font-medium text-center text-gray-900 border border-gray-300 rounded-lg hover:bg-gray-100 focus:ring-4 focus:ring-gray-100 dark:text-white dark:border-gray-700 dark:hover:bg-gray-700 dark:focus:ring-gray-800">
             Découvrir nos annonces
           </a>
 
         </div>
+
         <div class="hidden lg:mt-0 lg:col-span-5 lg:flex">
           <img class="rounded "
             src="https://images.unsplash.com/photo-1624804821465-5c7c80f99bd1?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2971&q=80"
@@ -46,15 +47,83 @@
       </div>
     </section>
 
+    <section class="bg-gray-100 dark:bg-gray-900">
+      <div
+        class="gap-8 items-center py-8 px-4 mx-auto max-w-screen-xl xl:gap-16 md:grid md:grid-cols-2 sm:py-16 lg:px-6">
+
+        <div class="grid grid-cols-2 gap-2 ">
+          <div>
+            <img class="h-full max-w-full rounded-lg"
+              src="https://images.unsplash.com/photo-1544665558-ee82fa2c0c33?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=3174&q=80"
+              alt>
+          </div>
+          <div>
+            <img class="h-full max-w-full rounded-lg"
+              src="https://images.unsplash.com/photo-1565020244281-fe53df7df170?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2970&q=80"
+              alt>
+          </div>
+          <div>
+            <img class="h-full max-w-full rounded-lg"
+              src="https://images.unsplash.com/photo-1540396515873-dd778f7679e7?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=3174&q=80"
+              alt>
+          </div>
+          <div>
+            <img class="h-full max-w-full rounded-lg"
+              src="https://images.unsplash.com/photo-1553522988-49daec855a59?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2970&q=80"
+              alt>
+          </div>
+        </div>
+
+        <div class="mt-4 md:mt-0">
+          <h2
+            class="mb-4 text-4xl tracking-tight font-extrabold text-gray-900 dark:text-white">Vous
+            etes un agent immobilier ? </h2>
+          <p class="mb-6 font-light text-gray-500 md:text-lg dark:text-gray-400">Découvrez
+            Notre site est spécialement conçu pour vous, agents immobiliers.
+            Nous comprenons les défis que vous rencontrez dans le domaine de l'immobilier,
+            et c'est pourquoi nous avons créé une plateforme qui vous permet de
+            mettre en avant vos annonces immobilières de manière efficace et de
+            toucher un public plus large que jamais</p>
+
+          <% if (isAdmin) { %>
+
+          <a href="/annonces/add"
+            class="inline-flex items-center justify-center px-5 py-3 mr-3 text-base font-medium text-center text-white rounded-lg bg-cyan-700 hover:bg-cyan-800">
+            Creez Votre Annonce
+            <svg class="w-5 h-5 ml-2 -mr-1" fill="currentColor"
+              viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+              <path fill-rule="evenodd"
+                d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z"
+                clip-rule="evenodd"></path>
+            </svg>
+          </a>
+          <% } else { %>
+
+          <a href="/register"
+            class="inline-flex items-center justify-center px-5 py-3 mr-3 text-base font-medium text-center text-white rounded-lg bg-cyan-700 hover:bg-cyan-800">
+            Inscrivez-vous en tant qu'agent iMobNB
+            <svg class="w-5 h-5 ml-2 -mr-1" fill="currentColor"
+              viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+              <path fill-rule="evenodd"
+                d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z"
+                clip-rule="evenodd"></path>
+            </svg>
+          </a>
+          <% } %>
+
+        </div>
+      </div>
+    </section>
+
     <!--Listes d'annonces -->
-    <section class="mb-20">
+    <section id="annonces" class="mb-20">
       <div class="container mx-auto">
         <div class="text-4xl py-6 text-center font-semibold leading-none mb-5">
           <span class="text-cyan-800">Nos</span> anonnces
         </div>
 
         <% if (annonces.length != 0) { %>
-        <div id="#Annonces"
+        <div
           class="grid md:grid-cols-2 lg:grid-cols-3 gap-4 lg:gap-14">
           <% annonces.forEach(function(annonce) { %> <%-
           include('./partials/annonceCarte.ejs', {annonce: annonce}); %> <% });
