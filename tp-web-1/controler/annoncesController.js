@@ -99,6 +99,7 @@ const getAnnonceInfo = async (req, res, next) => {
       title: "Détails de l'annonce",
       annonce: annonce,
       isAdmin: req.user ? req.user.isAdmin : undefined,
+      userId: req.user ? req.user._id : null,
     });
   } catch (err) {
     console.error(
