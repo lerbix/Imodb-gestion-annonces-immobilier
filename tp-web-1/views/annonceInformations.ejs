@@ -193,11 +193,69 @@
           <div class="flex flex-col w-full justify-between">
             <div class="mb-2 bg-white rounded-xl shadow">
               <div class="flex flex-col items-center py-4 w-full">
-                <img
-                  class="w-20 h-20 mb-3 rounded-full shadow-sm"
-                  src="/images/avatar.jpeg"
-                  alt="Bonnie image"
-                />
+                <button
+                  data-popover-target="popover-user-profile"
+                  type="button"
+                >
+                  <img
+                    class="w-20 h-20 mb-3 rounded-full shadow-sm"
+                    src="/images/avatar.jpeg"
+                    alt="Bonnie image"
+                  />
+                </button>
+                <div
+                  data-popover
+                  id="popover-user-profile"
+                  role="tooltip"
+                  class="absolute z-10 invisible inline-block w-64 text-sm text-gray-500 transition-opacity duration-300 bg-white border border-gray-200 rounded-lg shadow-sm opacity-0 dark:text-gray-400 dark:bg-gray-800 dark:border-gray-600"
+                >
+                  <div class="p-3">
+                    <div class="flex items-center justify-between mb-2">
+                      <a href="#">
+                        <img
+                          class="w-10 h-10 rounded-full"
+                          src="/images/avatar.jpeg"
+                          alt="Jese Leos"
+                        />
+                      </a>
+                    </div>
+                    <p
+                      class="text-base font-semibold leading-none text-gray-900 dark:text-white"
+                    >
+                      <%- annonce.agent_immobilier.firstName -%> <%-
+                      annonce.agent_immobilier.lastName -%>
+                    </p>
+                    <p class="mb-3 text-sm font-normal">
+                      <a href="#" class="hover:underline"
+                        >@<%-annonce.agent_immobilier.username%></a
+                      >
+                    </p>
+                    <p class="mb-4 text-sm">
+                      Phone Number <br />
+                      <a
+                        href="#"
+                        class="text-blue-600 dark:text-blue-500 hover:underline"
+                      >
+                        <%- annonce.agent_immobilier.phone %></a
+                      >
+                    </p>
+                    <!--
+                    <ul class="flex text-sm">
+                      <li class="mr-2">
+                        <a href="#" class="hover:underline">
+                          <span
+                            class="font-semibold text-gray-900 dark:text-white"
+                            >799</span
+                          >
+                          <span>Annonces</span>
+                        </a>
+                      </li>
+                    </ul>
+                    -->
+                  </div>
+                  <div data-popper-arrow></div>
+                </div>
+
                 <h5
                   class="mb-1 text-xl font-medium text-gray-900 dark:text-white"
                 >

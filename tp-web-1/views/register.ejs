@@ -1,49 +1,170 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Registration</title>
-    <link href="/style.css" rel="stylesheet">
+    <title>Login</title>
+    <link href="/style.css" rel="stylesheet" />
     <%- include('./partials/head.ejs'); %>
   </head>
   <body>
-    <div class="grid grid-cols-1 sm:grid-cols-2 h-screen w-full">
-      <div class="bg-gray-100 flex flex-col justify-center">
+    <div class="bg-white dark:bg-gray-900">
+      <div class="flex justify-center h-screen">
+        <div class="flex items-center w-full max-w-md px-6 mx-auto lg:w-2/6">
+          <div class="flex-1">
+            <div class="text-center">
+              <h2
+                class="text-4xl font-bold text-center text-gray-700 dark:text-white"
+              >
+                iMobNB
+              </h2>
 
-      <!-- Formulaire d'inscription -->
-      <form class="bg-white max-w-[400px] w-full mx-auto p-20 px-6 rounded-3xl border-gray-100" action="/register" method="POST">
-        <h1 class="text-4xl text-black font-bold text-center">Registration</h1>
-        <div class="flex flex-col mt-8 text-black py-2">
-          <!-- Champ nom d'utilisateur -->
-          <label for="username">Username:</label>
-          <input placeholder="Enter your email" class="rounded-xl border-2 border-gray-100 mt-2 p-2 bg-transparent" type="text" name="username" id="username" required>
-      </div>
-      <div class="flex flex-col mt-8 text-black py-2">
-        <!-- Champ mot de passe -->
-        <label for="password">Password:</label>
-        <input placeholder="Enter your password" class="rounded-xl border-2 border-gray-100 mt-2 p-2 bg-transparent" type="password" name="password" id="password" required>
-      </div>
-      <div class="flex items-center mt-8 text-black py-2">
-        <!-- Case à cocher pour isAdmin -->
-        <label for="isAdmin">Register as Admin:</label>
-        <input type="checkbox" name="isAdmin" id="isAdmin" class="ml-3 accent-pink-500" value="true">
-      </div>
-        <!-- Bouton de soumission -->
-        <div>
-          <button class="active:scale-[.98] active:duration-75 transition-all hover:scale-[1.01] ease-in-out w-full text-white rounded-xl my-5 py-2 bg-blue-600">
-            <input type="submit" value="Register">
-          </button>
+              <p class="mt-3 text-gray-500 dark:text-gray-300">Sign up</p>
+            </div>
+
+            <div class="mt-8">
+              <form action="/register" method="POST">
+                <div>
+                  <label
+                    for="firstName"
+                    class="block mb-2 text-sm text-gray-600 dark:text-gray-200"
+                    >First Name</label
+                  >
+                  <input
+                    type="text"
+                    name="firstName"
+                    id="firstName"
+                    required
+                    placeholder="first name"
+                    class="block w-full px-4 py-2 mt-2 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-md dark:placeholder-gray-600 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-700 focus:border-blue-400 dark:focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40"
+                  />
+                </div>
+                <div>
+                  <label
+                    for="lastName"
+                    class="block mb-2 text-sm text-gray-600 dark:text-gray-200"
+                    >Last Name</label
+                  >
+                  <input
+                    type="text"
+                    name="lastName"
+                    id="lastName"
+                    required
+                    placeholder="last name"
+                    class="block w-full px-4 py-2 mt-2 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-md dark:placeholder-gray-600 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-700 focus:border-blue-400 dark:focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40"
+                  />
+                </div>
+                <div>
+                  <label
+                    for="username"
+                    class="block mb-2 text-sm text-gray-600 dark:text-gray-200"
+                    >UserName</label
+                  >
+                  <input
+                    type="text"
+                    name="username"
+                    id="username"
+                    required
+                    placeholder="username"
+                    class="block w-full px-4 py-2 mt-2 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-md dark:placeholder-gray-600 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-700 focus:border-blue-400 dark:focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40"
+                  />
+                </div>
+                <div>
+                  <label
+                    for="phone"
+                    class="block mb-2 text-sm text-gray-600 dark:text-gray-200"
+                    >Your Phone</label
+                  >
+                  <input
+                    type="tel"
+                    name="phone"
+                    id="phone"
+                    required
+                    placeholder="phone number"
+                    class="block w-full px-4 py-2 mt-2 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-md dark:placeholder-gray-600 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-700 focus:border-blue-400 dark:focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40"
+                  />
+                </div>
+                <div>
+                  <label
+                    for="isAdmin"
+                    class="block mb-2 text-sm text-gray-600 dark:text-gray-200"
+                    >Register as Agent</label
+                  >
+                  <input
+                    type="checkbox"
+                    name="isAdmin"
+                    id="isAdmin"
+                    class="ml-3 accent-pink-500"
+                    value="true"
+                  />
+                </div>
+
+                <div class="mt-6">
+                  <div class="flex justify-between mb-2">
+                    <label
+                      for="password"
+                      class="text-sm text-gray-600 dark:text-gray-200"
+                      >Password</label
+                    >
+                  </div>
+
+                  <input
+                    type="password"
+                    name="password"
+                    id="password"
+                    placeholder="Your Password"
+                    class="block w-full px-4 py-2 mt-2 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-md dark:placeholder-gray-600 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-700 focus:border-blue-400 dark:focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40"
+                    required
+                  />
+                </div>
+
+                <div class="mt-6">
+                  <button
+                    class="w-full px-4 py-2 tracking-wide text-white transition-colors duration-200 transform bg-blue-500 rounded-md hover:bg-blue-400 focus:outline-none focus:bg-blue-400 focus:ring focus:ring-blue-300 focus:ring-opacity-50"
+                  >
+                    <input type="submit" value="Register" />
+                  </button>
+                </div>
+              </form>
+
+              <p class="mt-6 text-sm text-center text-gray-400">
+                Already have an account?
+                <a
+                  href="/login"
+                  class="text-blue-500 focus:outline-none focus:underline hover:underline"
+                  >Sign In</a
+                >.
+              </p>
+            </div>
+          </div>
         </div>
-        <!-- Lien vers la page de connexion (si applicable) -->
-      <div class="flex justify-center text-gray-400 py-2">
-        <p>Already have an account? <a class="text-blue-600 underline" href="/login"> Login</a></p>
-    </div>
-      </form>
-      
-    </div>
-      
-      <div class="hidden sm:block">
-        <img class="w-full h-full object-cover" src="/registerImage.jpg" alt="Property Image">
+        <div
+          class="hidden bg-cover lg:block lg:w-2/3"
+          style="
+            background-image: url(https://images.unsplash.com/photo-1600585154340-be6161a56a0c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80);
+          "
+        >
+          <div class="flex items-center h-full px-20 bg-gray-900 bg-opacity-40">
+            <div>
+              <h2 class="text-4xl font-bold text-white">iMobNB</h2>
+
+              <p class="max-w-xl mt-3 text-gray-300">
+                Your Real Estate Connection
+              </p>
+            </div>
+          </div>
+        </div>
       </div>
-  </div>
+    </div>
+    <script>
+      function dismissBadge(targetId) {
+        const targetElement = document.querySelector(targetId);
+        if (targetElement) {
+          targetElement.style.transition = "opacity 0.5s ease";
+          targetElement.style.opacity = "0";
+          setTimeout(() => {
+            targetElement.style.display = "none";
+          }, 500); // Adjust the delay (in milliseconds) as needed
+        }
+      }
+    </script>
   </body>
 </html>
