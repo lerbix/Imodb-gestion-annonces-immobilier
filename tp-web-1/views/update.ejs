@@ -134,14 +134,13 @@
             <div x-data="dataFileDnD()" class=" py-2 border border-gray-200 rounded mt-2">
             
               <div x-ref="dnd"
-                  class="relative flex flex-col text-gray-400 border border-gray-200 border-dashed rounded cursor-pointer"
-                  :class="{'pointer-events-none': <%- data.photos.length -%> >= 5}">
+                  class="relative flex flex-col text-gray-400 border border-gray-200 border-dashed rounded cursor-pointer">
                   <input accept="image/*" type="file" multiple
                       class="absolute inset-0 z-50 w-full h-full p-0 m-0 outline-none opacity-0 cursor-pointer"
                       @change="addFiles($event)"
-                      @dragover="<%-data.photos.length-%> < 5 ? $refs.dnd.classList.add('border-blue-400') : null; <%-data.photos.length-%> < 5 ? $refs.dnd.classList.add('ring-4') : null; <%-data.photos.length-%> < 5 ? $refs.dnd.classList.add('ring-inset') : null;"
-                      @dragleave="<%-data.photos.length -%>< 5 ? $refs.dnd.classList.remove('border-blue-400') : null; <%-data.photos.length -%>< 5 ? $refs.dnd.classList.remove('ring-4') : null; <%-data.photos.length -%>< 5 ? $refs.dnd.classList.remove('ring-inset') : null;"
-                      @drop="<%- data.photos.length -%> < 5 ? $refs.dnd.classList.remove('border-blue-400') : null; <%-data.photos.length -%> < 5 ? $refs.dnd.classList.remove('ring-4') : null; <%-data.photos.length -%> < 5 ? $refs.dnd.classList.remove('ring-inset') : null;"
+                      @dragover="$refs.dnd.classList.add('border-blue-400'); $refs.dnd.classList.add('ring-4'); $refs.dnd.classList.add('ring-inset');"
+                      @dragleave="$refs.dnd.classList.remove('border-blue-400'); $refs.dnd.classList.remove('ring-4'); $refs.dnd.classList.remove('ring-inset');"
+                      @drop="$refs.dnd.classList.remove('border-blue-400'); $refs.dnd.classList.remove('ring-4'); $refs.dnd.classList.remove('ring-inset');"
                       title=""
                       name="photos" />
 
@@ -171,11 +170,11 @@
                           </div>
                       </div>
 
-              <template x-if="files.length > 0 && <%-data.photos.length -%> < 6">
+              <template x-if="files.length > 0">
                   <div class="grid grid-cols-2 gap-4 mt-4 md:grid-cols-6" @drop.prevent="drop($event)"
                       @dragover.prevent="$event.dataTransfer.dropEffect = 'move'">
                       
-                      <template x-for="(_, index) in Array.from({ length: <%- data.photos.length -%> - files.length })">
+                      <template x-for="(_, index) in Array.from({ length: files.length })">
                           <div class="relative flex flex-col items-center overflow-hidden text-center bg-gray-100 border rounded cursor-move select-none"
                               style="padding-top: 100%;" @dragstart="dragstart($event)" @dragend="fileDragging = null"
                               :class="{'border-blue-600': fileDragging == index}" draggable="true" :data-index="index">
