@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title><%= title %></title>
+        <%- include('./partials/head.ejs'); %>
+        <link
+            href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.8.1/flowbite.min.css"
+            rel="stylesheet" />
+        <!-- 
+      <link rel="stylesheet" href="/stylesheets/style.css">
+    -->
+    </head>
+    <body>
+        <!--Navbar-->
+        <%- include('./partials/navbar.ejs'); %>
+
+        <!--Listes d'annonces -->
+        <section id="annoncesNonPublie" class>
+            <div class="container mx-auto ">
+                <div
+                    class="text-4xl py-6 text-center font-semibold leading-none mb-5">
+                    Les annonces <span class="text-red-600">Non publiées</span>
+                </div>
+
+                <% const annoncesNonPublie = annonces.filter(annonce=>
+                annonce.statusPublication === 'Non publiée') %>
+
+                <% if (annoncesNonPublie.length != 0) { %>
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-4 lg:gap-14">
+                    <% annoncesNonPublie.forEach(function(annonce) { %>
+
+                    <%-
+                    include('./partials/annonceCarte.ejs', {annonce: annonce});
+                    %>
+
+                    <% });
+                    %>
+                </div>
+                <% } else { %>
+                <div class="text-2xl font-light py-5 text-center">
+                    Aucune annonce pour le moment
+                </div>
+
+                <div class="flex justify-center">
+                    <a
+                        href="/annonces/add"
+                        class="text-center text-white bg-cyan-700 hover:bg-cyan-800 py-2 px-4 rounded">
+                        Créer une annonce
+                    </a>
+                </div>
+                <% } %>
+
+            </div>
+        </section>
+
+        <section id="annoncesPublie" class="mb-20 border">
+            <div class="container mx-auto ">
+                <div
+                    class="text-4xl py-6 text-center font-semibold leading-none mb-5">
+                    Les annonces <span class="text-green-500">publiées</span>
+                </div>
+
+                <% const annoncesPublie = annonces.filter(annonce=>
+                annonce.statusPublication === 'Publiée') %>
+
+                <% if (annoncesPublie.length != 0) { %>
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-4 lg:gap-14">
+                    <% annoncesPublie.forEach(function(annonce) { %>
+
+                    <% if ( annonce.statusPublication === 'Publiée') { %>
+                    <%-
+                    include('./partials/annonceCarte.ejs', {annonce: annonce});
+                    %>
+                    <% } %>
+                    <% });
+                    %>
+                </div>
+                <% } else { %>
+                <div class="text-2xl font-light py-5 text-center">
+                    Aucune annonce pour le moment
+                </div>
+
+                <div class="flex justify-center">
+                    <a
+                        href="/annonces/add"
+                        class="text-center text-white bg-cyan-700 hover:bg-cyan-800 py-2 px-4 rounded">
+                        Créer une annonce
+                    </a>
+                </div>
+                <% } %>
+
+            </div>
+        </section>
+        <script
+            src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.8.1/flowbite.min.js"></script>
+        <!--Footer -->
+        <%- include('./partials/footer.ejs'); %>
+    </body>
+</html>

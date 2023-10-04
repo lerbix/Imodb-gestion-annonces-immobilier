@@ -288,6 +288,25 @@ const repondreQuestion = (req, res, next) => {
     });
 };
 
+const getMesAnnonces = async (req, res, next) => {
+  try {
+    console.log("lerbi");
+    console.log(req.user._id);
+    const annonces = await Annonce.find({
+      agent_immobilier: req.user._id,
+    }).exec();
+
+    res.render("MesAnnonces", {
+      title: "Mes Annonces",
+      annonces: annonces,
+      isAdmin: req.user ? req.user.isAdmin : undefined,
+    });
+  } catch (err) {
+    console.error("Erreur lors de la récupération des annonces :", err);
+    return next(err);
+  }
+};
+
 module.exports = {
   getAllAnnonces,
   createAnnonce,
@@ -298,4 +317,5 @@ module.exports = {
   update,
   poserQuestion,
   repondreQuestion,
+  getMesAnnonces,
 };
