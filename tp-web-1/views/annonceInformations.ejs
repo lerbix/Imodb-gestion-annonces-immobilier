@@ -5,8 +5,7 @@
     <%- include('./partials/head.ejs'); %>
     <link
       href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.8.1/flowbite.min.css"
-      rel="stylesheet"
-    />
+      rel="stylesheet" />
 
     <!-- 
       <link rel="stylesheet" href="/stylesheets/style.css">
@@ -19,61 +18,41 @@
       <div class="container mt-4 mx-auto min-h-[800px] px-1 mb-14">
         <!-- Titre et bouttons -->
         <div
-          class="flex flex-col lg:flex-row lg:items-center lg:justify-between px-4 py-2"
-        >
+          class="flex flex-col lg:flex-row lg:items-center lg:justify-between px-4 py-2">
           <div class="text-3xl font-semibold mb-4"><%- annonce.titre %></div>
-
-          <% if (isAdmin) { %> <% if (annonce.statusPublication == 'Publiée') {
-          %>
-          <span
-            class="bg-green-100 text-green-800 text-md font-medium mr-2 px-2.5 py-0.5 rounded-full"
-            ><%- annonce.statusPublication %>
-          </span>
-          <% } else { %>
-          <span
-            class="bg-red-100 text-red-800 text-md font-medium mr-2 px-2.5 py-0.5 rounded-full"
-            ><%- annonce.statusPublication %>
-          </span>
-          <% } %> <% } %>
 
           <div class="mb-4 lg:mb-0 flex gap-x-2 text-sm">
             <% if (userId && annonce.agent_immobilier._id.toString() ===
             userId.toString()) { %>
             <a
               href="/annonces/update/<%= annonce._id %>"
-              class="text-white bg-cyan-700 hover:bg-cyan-800 focus:ring-4 focus:outline-none focus:ring-cyan-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center mr-2"
-            >
+              class="text-white bg-cyan-700 hover:bg-cyan-800 focus:ring-4 focus:outline-none focus:ring-cyan-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center mr-2">
               <svg
                 class="w-3 h-3 text-white mr-2"
                 aria-hidden="true"
                 xmlns="http://www.w3.org/2000/svg"
                 fill="currentColor"
-                viewBox="0 0 20 20"
-              >
+                viewBox="0 0 20 20">
                 <path
-                  d="M1 5h1.424a3.228 3.228 0 0 0 6.152 0H19a1 1 0 1 0 0-2H8.576a3.228 3.228 0 0 0-6.152 0H1a1 1 0 1 0 0 2Zm18 4h-1.424a3.228 3.228 0 0 0-6.152 0H1a1 1 0 1 0 0 2h10.424a3.228 3.228 0 0 0 6.152 0H19a1 1 0 0 0 0-2Zm0 6H8.576a3.228 3.228 0 0 0-6.152 0H1a1 1 0 0 0 0 2h1.424a3.228 3.228 0 0 0 6.152 0H19a1 1 0 0 0 0-2Z"
-                />
+                  d="M1 5h1.424a3.228 3.228 0 0 0 6.152 0H19a1 1 0 1 0 0-2H8.576a3.228 3.228 0 0 0-6.152 0H1a1 1 0 1 0 0 2Zm18 4h-1.424a3.228 3.228 0 0 0-6.152 0H1a1 1 0 1 0 0 2h10.424a3.228 3.228 0 0 0 6.152 0H19a1 1 0 0 0 0-2Zm0 6H8.576a3.228 3.228 0 0 0-6.152 0H1a1 1 0 0 0 0 2h1.424a3.228 3.228 0 0 0 6.152 0H19a1 1 0 0 0 0-2Z" />
               </svg>
               Modifier
             </a>
             <a
               href="/delete/<%- annonce._id %>"
-              class="text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center mr-2"
-            >
+              class="text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center mr-2">
               <svg
                 class="w-3 h-3 text-white mr-2"
                 aria-hidden="true"
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"
-                viewBox="0 0 18 20"
-              >
+                viewBox="0 0 18 20">
                 <path
                   stroke="currentColor"
                   stroke-linecap="round"
                   stroke-linejoin="round"
                   stroke-width="2"
-                  d="M1 5h16M7 8v8m4-8v8M7 1h4a1 1 0 0 1 1 1v3H6V2a1 1 0 0 1 1-1ZM3 5h12v13a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V5Z"
-                />
+                  d="M1 5h16M7 8v8m4-8v8M7 1h4a1 1 0 0 1 1 1v3H6V2a1 1 0 0 1 1-1ZM3 5h12v13a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V5Z" />
               </svg>
               Supprimer
             </a>
@@ -81,22 +60,19 @@
 
             <a
               href="#questions"
-              class="text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:outline-none focus:green-cyan-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center mr-2"
-            >
+              class="text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:outline-none focus:green-cyan-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center mr-2">
               <svg
                 class="w-3 h-3 text-white mr-2"
                 aria-hidden="true"
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"
-                viewBox="0 0 20 20"
-              >
+                viewBox="0 0 20 20">
                 <path
                   stroke="currentColor"
                   stroke-linecap="round"
                   stroke-linejoin="round"
                   stroke-width="2"
-                  d="M7.529 7.988a2.502 2.502 0 0 1 5 .191A2.441 2.441 0 0 1 10 10.582V12m-.01 3.008H10M19 10a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"
-                />
+                  d="M7.529 7.988a2.502 2.502 0 0 1 5 .191A2.441 2.441 0 0 1 10 10.582V12m-.01 3.008H10M19 10a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
               </svg>
               Poser une question
             </a>
@@ -109,8 +85,7 @@
           <div
             id="custom-controls-gallery"
             class="relative w-full"
-            data-carousel="slide"
-          >
+            data-carousel="slide">
             <!-- Carousel wrapper -->
             <div class="relative h-56 overflow-hidden rounded-lg md:h-96">
               <% for (let i = 0; i < annonce.photos.length; i++) { %>
@@ -119,8 +94,7 @@
                 <img
                   src="/images/uploads/<%-annonce.photos[i] %>"
                   class="absolute block h-auto max-w-full max-h-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2"
-                  alt
-                />
+                  alt />
               </div>
               <% } %>
             </div>
@@ -129,25 +103,21 @@
               <button
                 type="button"
                 class="flex justify-center items-center mr-4 h-full cursor-pointer group focus:outline-none"
-                data-carousel-prev
-              >
+                data-carousel-prev>
                 <span
-                  class="text-gray-400 hover:text-gray-900 dark:hover:text-white group-focus:text-gray-900 dark:group-focus:text-white"
-                >
+                  class="text-gray-400 hover:text-gray-900 dark:hover:text-white group-focus:text-gray-900 dark:group-focus:text-white">
                   <svg
                     class="w-5 h-5"
                     aria-hidden="true"
                     xmlns="http://www.w3.org/2000/svg"
                     fill="none"
-                    viewBox="0 0 14 10"
-                  >
+                    viewBox="0 0 14 10">
                     <path
                       stroke="currentColor"
                       stroke-linecap="round"
                       stroke-linejoin="round"
                       stroke-width="2"
-                      d="M13 5H1m0 0 4 4M1 5l4-4"
-                    />
+                      d="M13 5H1m0 0 4 4M1 5l4-4" />
                   </svg>
                   <span class="sr-only">Previous</span>
                 </span>
@@ -155,25 +125,21 @@
               <button
                 type="button"
                 class="flex justify-center items-center h-full cursor-pointer group focus:outline-none"
-                data-carousel-next
-              >
+                data-carousel-next>
                 <span
-                  class="text-gray-400 hover:text-gray-900 dark:hover:text-white group-focus:text-gray-900 dark:group-focus:text-white"
-                >
+                  class="text-gray-400 hover:text-gray-900 dark:hover:text-white group-focus:text-gray-900 dark:group-focus:text-white">
                   <svg
                     class="w-5 h-5"
                     aria-hidden="true"
                     xmlns="http://www.w3.org/2000/svg"
                     fill="none"
-                    viewBox="0 0 14 10"
-                  >
+                    viewBox="0 0 14 10">
                     <path
                       stroke="currentColor"
                       stroke-linecap="round"
                       stroke-linejoin="round"
                       stroke-width="2"
-                      d="M1 5h12m0 0L9 1m4 4L9 9"
-                    />
+                      d="M1 5h12m0 0L9 1m4 4L9 9" />
                   </svg>
                   <span class="sr-only">Next</span>
                 </span>
@@ -186,8 +152,7 @@
                 <img
                   class="absolute inset-0 w-full h-full object-cover rounded-lg"
                   src="/images/uploads/<%-annonce.photos[i] %>"
-                  alt
-                />
+                  alt />
               </div>
               <% } %>
             </div>
@@ -200,8 +165,7 @@
                 <img
                   src="/images/uploads/<%-annonce.photos[0] %>"
                   class="absolute block h-auto max-w-full max-h-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2"
-                  alt
-                />
+                  alt />
               </div>
             </div>
             <!-- Slider controls -->
@@ -209,25 +173,21 @@
               <button
                 type="button"
                 class="flex justify-center items-center mr-4 h-full cursor-pointer group focus:outline-none"
-                data-carousel-prev
-              >
+                data-carousel-prev>
                 <span
-                  class="text-gray-400 hover:text-gray-900 dark:hover:text-white group-focus:text-gray-900 dark:group-focus:text-white"
-                >
+                  class="text-gray-400 hover:text-gray-900 dark:hover:text-white group-focus:text-gray-900 dark:group-focus:text-white">
                   <svg
                     class="w-5 h-5"
                     aria-hidden="true"
                     xmlns="http://www.w3.org/2000/svg"
                     fill="none"
-                    viewBox="0 0 14 10"
-                  >
+                    viewBox="0 0 14 10">
                     <path
                       stroke="currentColor"
                       stroke-linecap="round"
                       stroke-linejoin="round"
                       stroke-width="2"
-                      d="M13 5H1m0 0 4 4M1 5l4-4"
-                    />
+                      d="M13 5H1m0 0 4 4M1 5l4-4" />
                   </svg>
                   <span class="sr-only">Previous</span>
                 </span>
@@ -235,25 +195,21 @@
               <button
                 type="button"
                 class="flex justify-center items-center h-full cursor-pointer group focus:outline-none"
-                data-carousel-next
-              >
+                data-carousel-next>
                 <span
-                  class="text-gray-400 hover:text-gray-900 dark:hover:text-white group-focus:text-gray-900 dark:group-focus:text-white"
-                >
+                  class="text-gray-400 hover:text-gray-900 dark:hover:text-white group-focus:text-gray-900 dark:group-focus:text-white">
                   <svg
                     class="w-5 h-5"
                     aria-hidden="true"
                     xmlns="http://www.w3.org/2000/svg"
                     fill="none"
-                    viewBox="0 0 14 10"
-                  >
+                    viewBox="0 0 14 10">
                     <path
                       stroke="currentColor"
                       stroke-linecap="round"
                       stroke-linejoin="round"
                       stroke-width="2"
-                      d="M1 5h12m0 0L9 1m4 4L9 9"
-                    />
+                      d="M1 5h12m0 0L9 1m4 4L9 9" />
                   </svg>
                   <span class="sr-only">Next</span>
                 </span>
@@ -266,8 +222,7 @@
                 <img
                   class="absolute inset-0 w-full h-full object-cover rounded-lg"
                   src="/images/uploads/<%-annonce.photos[i] %>"
-                  alt
-                />
+                  alt />
               </div>
               <% } %>
             </div>
@@ -279,49 +234,40 @@
               <div class="flex flex-col items-center py-4 w-full">
                 <button
                   data-popover-target="popover-user-profile"
-                  type="button"
-                >
+                  type="button">
                   <img
                     class="w-20 h-20 mb-3 rounded-full shadow-sm"
                     src="/images/avatar.jpeg"
-                    alt="Bonnie image"
-                  />
+                    alt="Bonnie image" />
                 </button>
                 <div
                   data-popover
                   id="popover-user-profile"
                   role="tooltip"
-                  class="absolute z-10 invisible inline-block w-64 text-sm text-gray-500 transition-opacity duration-300 bg-white border border-gray-200 rounded-lg shadow-sm opacity-0 dark:text-gray-400 dark:bg-gray-800 dark:border-gray-600"
-                >
+                  class="absolute z-10 invisible inline-block w-64 text-sm text-gray-500 transition-opacity duration-300 bg-white border border-gray-200 rounded-lg shadow-sm opacity-0 dark:text-gray-400 dark:bg-gray-800 dark:border-gray-600">
                   <div class="p-3">
                     <div class="flex items-center justify-between mb-2">
                       <a href="#">
                         <img
                           class="w-10 h-10 rounded-full"
                           src="/images/avatar.jpeg"
-                          alt="Jese Leos"
-                        />
+                          alt="Jese Leos" />
                       </a>
                     </div>
                     <p
-                      class="text-base font-semibold leading-none text-gray-900 dark:text-white"
-                    >
+                      class="text-base font-semibold leading-none text-gray-900 dark:text-white">
                       <%- annonce.agent_immobilier.firstName -%> <%-
                       annonce.agent_immobilier.lastName -%>
                     </p>
                     <p class="mb-3 text-sm font-normal">
-                      <a href="#" class="hover:underline"
-                        >@<%-annonce.agent_immobilier.username%></a
-                      >
+                      <a href="#" class="hover:underline">@<%-annonce.agent_immobilier.username%></a>
                     </p>
                     <p class="mb-4 text-sm">
                       Phone Number <br />
                       <a
                         href="#"
-                        class="text-blue-600 dark:text-blue-500 hover:underline"
-                      >
-                        <%- annonce.agent_immobilier.phone %></a
-                      >
+                        class="text-blue-600 dark:text-blue-500 hover:underline">
+                        <%- annonce.agent_immobilier.phone %></a>
                     </p>
                     <!--
                     <ul class="flex text-sm">
@@ -341,61 +287,63 @@
                 </div>
 
                 <h5
-                  class="mb-1 text-xl font-medium text-gray-900 dark:text-white"
-                >
+                  class="mb-1 text-xl font-medium text-gray-900 dark:text-white">
                   <%- annonce.agent_immobilier.username%>
                 </h5>
-                <span class="text-sm text-gray-500 dark:text-gray-400"
-                  >Agent Immobilier</span
-                >
+                <span class="text-sm text-gray-500 dark:text-gray-400">Agent
+                  Immobilier</span>
               </div>
             </div>
 
             <div class="mb-2 py-4 px-4 rounded-xl shadow text-center">
               <div
-                class="font-medium mb-3 self-center flex space-x-4 justify-center items-center"
-              >
+                class="font-medium mb-3 self-center flex space-x-4 justify-center items-center">
                 <svg
                   class="w-[20px] h-[20px]"
                   aria-hidden="true"
                   xmlns="http://www.w3.org/2000/svg"
                   fill="currentColor"
-                  viewBox="0 0 20 20"
-                >
+                  viewBox="0 0 20 20">
                   <path
-                    d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5ZM9.5 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM12 15H8a1 1 0 0 1 0-2h1v-3H8a1 1 0 0 1 0-2h2a1 1 0 0 1 1 1v4h1a1 1 0 0 1 0 2Z"
-                  />
+                    d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5ZM9.5 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM12 15H8a1 1 0 0 1 0-2h1v-3H8a1 1 0 0 1 0-2h2a1 1 0 0 1 1 1v4h1a1 1 0 0 1 0 2Z" />
                 </svg>
                 <p class="font-semibold text-xl">Informations</p>
               </div>
 
               <div
-                class="mb-2 flex flex-row justify-center items-center space-x-4 font-extrabold text-cyan-500 text-xl"
-              >
+                class="mb-2 flex flex-row justify-center items-center space-x-4 font-extrabold text-cyan-500 text-xl">
                 <span
-                  class="bg-blue-100 text-blue-800 text-xs font-medium mr-2 px-2.5 py-1 rounded"
-                  >En vente</span
-                >
+                  class="bg-blue-100 text-blue-800 text-xs font-medium mr-2 px-2.5 py-1 rounded">En
+                  vente</span>
                 <span
-                  class="bg-green-100 text-green-800 text-xs font-medium mr-2 px-2.5 py-1 rounded dark:bg-green-900 dark:text-green-300"
-                  >Disponible</span
-                >
+                  class="bg-green-100 text-green-800 text-xs font-medium mr-2 px-2.5 py-1 rounded dark:bg-green-900 dark:text-green-300">Disponible</span>
+
+                <% if (isAdmin) { %> <% if (annonce.statusPublication ==
+                'Publiée') {
+                %>
+                <span
+                  class="bg-yellow-100 text-yellow-800 text-xs font-medium mr-2 px-2.5 py-1 rounded"><%-
+                  annonce.statusPublication %>
+                </span>
+                <% } else { %>
+                <span
+                  class="bg-red-100 text-red-800 text-xs font-medium mr-2 px-2.5 py-1 rounded"><%-
+                  annonce.statusPublication %>
+                </span>
+                <% } %> <% } %>
               </div>
 
               <div
-                class="mb-2 py-4 px-4 rounded-xl shadow flex space-x-5 justify-start items-center"
-              >
+                class="mb-2 py-4 px-4 rounded-xl shadow flex space-x-5 justify-start items-center">
                 <div class=" ">
                   <svg
                     class="w-[34px] h-[34px] text-gray-800 dark:text-white"
                     aria-hidden="true"
                     xmlns="http://www.w3.org/2000/svg"
                     fill="currentColor"
-                    viewBox="0 0 20 20"
-                  >
+                    viewBox="0 0 20 20">
                     <path
-                      d="M10 0a10 10 0 1 0 10 10A10.011 10.011 0 0 0 10 0Zm3.982 13.982a1 1 0 0 1-1.414 0l-3.274-3.274A1.012 1.012 0 0 1 9 10V6a1 1 0 0 1 2 0v3.586l2.982 2.982a1 1 0 0 1 0 1.414Z"
-                    />
+                      d="M10 0a10 10 0 1 0 10 10A10.011 10.011 0 0 0 10 0Zm3.982 13.982a1 1 0 0 1-1.414 0l-3.274-3.274A1.012 1.012 0 0 1 9 10V6a1 1 0 0 1 2 0v3.586l2.982 2.982a1 1 0 0 1 0 1.414Z" />
                   </svg>
                 </div>
                 <div class="flex-1 gap-x-3">
@@ -404,28 +352,24 @@
               </div>
 
               <div
-                class="mb-3 py-4 px-4 rounded-xl shadow flex space-x-5 justify-start items-center"
-              >
+                class="mb-3 py-4 px-4 rounded-xl shadow flex space-x-5 justify-start items-center">
                 <div class=" ">
                   <svg
                     class="w-6 h-6 text-gray-800 dark:text-white"
                     aria-hidden="true"
                     xmlns="http://www.w3.org/2000/svg"
                     fill="none"
-                    viewBox="0 0 14 18"
-                  >
+                    viewBox="0 0 14 18">
                     <path
                       stroke="currentColor"
                       stroke-linecap="round"
                       stroke-linejoin="round"
                       stroke-width="2"
-                      d="M1 7h9.231M1 11h9.231M13 2.086A5.95 5.95 0 0 0 9.615 1C5.877 1 2.846 4.582 2.846 9s3.031 8 6.769 8A5.94 5.94 0 0 0 13 15.916"
-                    />
+                      d="M1 7h9.231M1 11h9.231M13 2.086A5.95 5.95 0 0 0 9.615 1C5.877 1 2.846 4.582 2.846 9s3.031 8 6.769 8A5.94 5.94 0 0 0 13 15.916" />
                   </svg>
                 </div>
                 <div
-                  class="flex-1 gap-x-3 text-center text-red-500 font-semibold"
-                >
+                  class="flex-1 gap-x-3 text-center text-red-500 font-semibold">
                   <%- annonce.prix %>
                 </div>
               </div>
@@ -445,18 +389,15 @@
             <!--Titres-->
             <div class="flex flex-col items-center py-4 w-full">
               <div
-                class="font-medium mb-3 self-center flex space-x-4 justify-center items-center"
-              >
+                class="font-medium mb-3 self-center flex space-x-4 justify-center items-center">
                 <svg
                   class="w-[20px] h-[20px]"
                   aria-hidden="true"
                   xmlns="http://www.w3.org/2000/svg"
                   fill="currentColor"
-                  viewBox="0 0 20 20"
-                >
+                  viewBox="0 0 20 20">
                   <path
-                    d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5ZM9.5 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM12 15H8a1 1 0 0 1 0-2h1v-3H8a1 1 0 0 1 0-2h2a1 1 0 0 1 1 1v4h1a1 1 0 0 1 0 2Z"
-                  />
+                    d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5ZM9.5 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM12 15H8a1 1 0 0 1 0-2h1v-3H8a1 1 0 0 1 0-2h2a1 1 0 0 1 1 1v4h1a1 1 0 0 1 0 2Z" />
                 </svg>
                 <p class="font-semibold text-xl">Posez votre question ?</p>
               </div>
@@ -464,36 +405,30 @@
             <!--Posez votre questions -->
             <form
               action="/annonces/poserQuestion/<%- annonce._id -%>"
-              method="post"
-            >
+              method="post">
               <div
-                class="px-4 my-2 grid grid-cols-2 md:grid-cols-4 gap-1 md:gap-8"
-              >
+                class="px-4 my-2 grid grid-cols-2 md:grid-cols-4 gap-1 md:gap-8">
                 <input
                   type="text"
                   id="question-input"
                   placeholder="Rédigez votre question "
                   name="question"
-                  class="block col-span-3 w-full p-2 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 sm:text-xs"
-                />
+                  class="block col-span-3 w-full p-2 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 sm:text-xs" />
                 <button
                   class="text-white bg-indigo-700 hover:bg-indigo-800 focus:outline-none font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex justify-center items-center mr-2"
-                  type="submit"
-                >
+                  type="submit">
                   <svg
                     class="w-3 h-3 text-white mr-4"
                     aria-hidden="true"
                     xmlns="http://www.w3.org/2000/svg"
                     fill="none"
-                    viewBox="0 0 8 14"
-                  >
+                    viewBox="0 0 8 14">
                     <path
                       stroke="currentColor"
                       stroke-linecap="round"
                       stroke-linejoin="round"
                       stroke-width="2"
-                      d="m1 13 5.7-5.326a.909.909 0 0 0 0-1.348L1 1"
-                    />
+                      d="m1 13 5.7-5.326a.909.909 0 0 0 0-1.348L1 1" />
                   </svg>
                   Envoyer
                 </button>
@@ -507,18 +442,15 @@
             <!--Titres-->
             <div class="flex flex-col items-center py-4 w-full">
               <div
-                class="font-medium mb-3 self-center flex space-x-4 justify-center items-center"
-              >
+                class="font-medium mb-3 self-center flex space-x-4 justify-center items-center">
                 <svg
                   class="w-[20px] h-[20px]"
                   aria-hidden="true"
                   xmlns="http://www.w3.org/2000/svg"
                   fill="currentColor"
-                  viewBox="0 0 20 20"
-                >
+                  viewBox="0 0 20 20">
                   <path
-                    d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5ZM9.5 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM12 15H8a1 1 0 0 1 0-2h1v-3H8a1 1 0 0 1 0-2h2a1 1 0 0 1 1 1v4h1a1 1 0 0 1 0 2Z"
-                  />
+                    d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5ZM9.5 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM12 15H8a1 1 0 0 1 0-2h1v-3H8a1 1 0 0 1 0-2h2a1 1 0 0 1 1 1v4h1a1 1 0 0 1 0 2Z" />
                 </svg>
                 <p class="font-semibold text-xl">Questions</p>
               </div>
@@ -535,38 +467,32 @@
                       aria-hidden="true"
                       xmlns="http://www.w3.org/2000/svg"
                       fill="currentColor"
-                      viewBox="0 0 20 20"
-                    >
+                      viewBox="0 0 20 20">
                       <path
-                        d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5ZM9.5 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM12 15H8a1 1 0 0 1 0-2h1v-3H8a1 1 0 0 1 0-2h2a1 1 0 0 1 1 1v4h1a1 1 0 0 1 0 2Z"
-                      />
+                        d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5ZM9.5 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM12 15H8a1 1 0 0 1 0-2h1v-3H8a1 1 0 0 1 0-2h2a1 1 0 0 1 1 1v4h1a1 1 0 0 1 0 2Z" />
                     </svg>
                   </div>
 
                   <div class="w-full flex flex-col">
                     <div
-                      class="flex w-full items-center justify-between space-x-10"
-                    >
+                      class="flex w-full items-center justify-between space-x-10">
                       <!--Username-->
 
                       <div class="text-xl font-semibold ml-4">
                         <span
-                          class="bg-gray-100 text-gray-800 text-xs font-medium inline-flex items-center px-2.5 py-1 rounded mr-2 mb-1"
-                        >
+                          class="bg-gray-100 text-gray-800 text-xs font-medium inline-flex items-center px-2.5 py-1 rounded mr-2 mb-1">
                           <svg
                             class="w-2.5 h-2.5 mr-1.5"
                             aria-hidden="true"
                             xmlns="http://www.w3.org/2000/svg"
                             fill="none"
-                            viewBox="0 0 14 18"
-                          >
+                            viewBox="0 0 14 18">
                             <path
                               stroke="currentColor"
                               stroke-linecap="round"
                               stroke-linejoin="round"
                               stroke-width="2"
-                              d="M7 8a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7Zm-2 3h4a4 4 0 0 1 4 4v2H1v-2a4 4 0 0 1 4-4Z"
-                            />
+                              d="M7 8a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7Zm-2 3h4a4 4 0 0 1 4 4v2H1v-2a4 4 0 0 1 4-4Z" />
                           </svg>
                           <%- question.utilisateur_username %>
                         </span>
@@ -574,8 +500,7 @@
 
                       <!--Date-->
                       <div
-                        class="bg-gray-100 text-gray-800 text-xs font-medium mr-2 px-2.5 py-0.5 rounded"
-                      >
+                        class="bg-gray-100 text-gray-800 text-xs font-medium mr-2 px-2.5 py-0.5 rounded">
                         <%= question.date.toLocaleString('fr-FR')%>
                       </div>
                     </div>
@@ -589,31 +514,25 @@
 
                     <% question.reponses.forEach(function(reponse) { %>
                     <div
-                      class="ml-14 mb-1 bg-indigo-100 text-indigo-800 text-xs font-medium mr-2 px-2.5 py-2 rounded dark:bg-indigo-900 dark:text-indigo-300"
-                    >
+                      class="ml-14 mb-1 bg-indigo-100 text-indigo-800 text-xs font-medium mr-2 px-2.5 py-2 rounded dark:bg-indigo-900 dark:text-indigo-300">
                       <div class="flex items-center justify-between">
                         <span
-                          class="bg-gray-100 text-gray-800 text-xs font-medium inline-flex items-center px-2.5 py-1 rounded mr-2 mb-1"
-                        >
+                          class="bg-gray-100 text-gray-800 text-xs font-medium inline-flex items-center px-2.5 py-1 rounded mr-2 mb-1">
                           <svg
                             class="w-2.5 h-2.5 mr-1.5"
                             aria-hidden="true"
                             xmlns="http://www.w3.org/2000/svg"
                             fill="currentColor"
-                            viewBox="0 0 14 18"
-                          >
+                            viewBox="0 0 14 18">
                             <path
-                              d="M7 9a4.5 4.5 0 1 0 0-9 4.5 4.5 0 0 0 0 9Zm2 1H5a5.006 5.006 0 0 0-5 5v2a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-2a5.006 5.006 0 0 0-5-5Z"
-                            />
+                              d="M7 9a4.5 4.5 0 1 0 0-9 4.5 4.5 0 0 0 0 9Zm2 1H5a5.006 5.006 0 0 0-5 5v2a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-2a5.006 5.006 0 0 0-5-5Z" />
                           </svg>
                           <%- reponse.agent_immobilier_username %>
                         </span>
 
                         <span
-                          class="bg-gray-100 text-gray-800 text-xs font-medium mr-2 px-2.5 py-0.5 rounded"
-                        >
-                          <%- reponse.date.toLocaleString('fr-FR')%></span
-                        >
+                          class="bg-gray-100 text-gray-800 text-xs font-medium mr-2 px-2.5 py-0.5 rounded">
+                          <%- reponse.date.toLocaleString('fr-FR')%></span>
                       </div>
 
                       <div class="ml-2"><%- reponse.reponse %></div>
@@ -626,42 +545,35 @@
 
                 <form
                   action="/annonces/repondreQuestion/<%- question._id %>"
-                  method="post"
-                >
+                  method="post">
                   <div
-                    class="ml-10 my-2 grid grid-cols-2 md:grid-cols-4 gap-1 md:gap-8"
-                  >
+                    class="ml-10 my-2 grid grid-cols-2 md:grid-cols-4 gap-1 md:gap-8">
                     <input
                       type="text"
                       id="small-input"
                       placeholder="Rédigez votre réponse "
                       name="reponse"
-                      class="block col-span-3 w-full p-2 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 sm:text-xs"
-                    />
+                      class="block col-span-3 w-full p-2 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 sm:text-xs" />
                     <input
                       type="hidden"
                       name="annonceId"
-                      value="<%- annonce._id %>"
-                    />
+                      value="<%- annonce._id %>" />
 
                     <button
                       type="submit"
-                      class="text-white bg-indigo-700 hover:bg-indigo-800 focus:outline-none font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex justify-center items-center mr-2"
-                    >
+                      class="text-white bg-indigo-700 hover:bg-indigo-800 focus:outline-none font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex justify-center items-center mr-2">
                       <svg
                         class="w-3 h-3 text-white mr-4"
                         aria-hidden="true"
                         xmlns="http://www.w3.org/2000/svg"
                         fill="none"
-                        viewBox="0 0 8 14"
-                      >
+                        viewBox="0 0 8 14">
                         <path
                           stroke="currentColor"
                           stroke-linecap="round"
                           stroke-linejoin="round"
                           stroke-width="2"
-                          d="m1 13 5.7-5.326a.909.909 0 0 0 0-1.348L1 1"
-                        />
+                          d="m1 13 5.7-5.326a.909.909 0 0 0 0-1.348L1 1" />
                       </svg>
                       Répondre
                     </button>
@@ -674,85 +586,6 @@
 
             <% }); %>
 
-            <!-- listes des questions avec reponses -->
-            <div class="grid col-span-1 space-y-3 p-2">
-              <div class="p-4 shadow rounded-xl">
-                <div class="flex justify-center items-center">
-                  <div>
-                    <svg
-                      class="w-[40px] h-[40px]"
-                      aria-hidden="true"
-                      xmlns="http://www.w3.org/2000/svg"
-                      fill="currentColor"
-                      viewBox="0 0 20 20"
-                    >
-                      <path
-                        d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5ZM9.5 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM12 15H8a1 1 0 0 1 0-2h1v-3H8a1 1 0 0 1 0-2h2a1 1 0 0 1 1 1v4h1a1 1 0 0 1 0 2Z"
-                      />
-                    </svg>
-                  </div>
-
-                  <div class="w-full flex flex-col">
-                    <div class="text-md font-semibold mb-2">Nom et Prénom</div>
-
-                    <!--la question -->
-                    <div class="ml-4 sm:ml-10 mb-2 text-sm">
-                      Lorem ipsum dolor, sit amet consectetur adipisicing elit.
-                      Ab harum laboriosam voluptatum accusamus nemo quibusdam
-                      aspernatur, molestiae nam, assumenda mollitia doloribus
-                      ratione quae perspiciatis ipsam libero blanditiis
-                      reprehenderit officiis necessitatibus?
-                    </div>
-
-                    <!-- les réponses -->
-
-                    <div
-                      class="ml-14 mb-1 bg-indigo-100 text-indigo-800 text-xs font-medium mr-2 px-2.5 py-2 rounded dark:bg-indigo-900 dark:text-indigo-300"
-                    >
-                      Lorem ipsum dolor, sit amet consectetur adipisicing elit.
-                      Ab harum laboriosam voluptatum accusamus nemo quibusdam
-                      aspernatur, molestiae nam, assumenda mollitia doloribus
-                      ratione quae perspiciatis ipsam libero blanditiis
-                      reprehenderit officiis necessitatibus?
-                    </div>
-                  </div>
-                </div>
-                <% if (isAdmin) { %>
-                <!-- Input for reponse -->
-                <div
-                  class="ml-10 my-2 grid grid-cols-2 md:grid-cols-4 gap-1 md:gap-8"
-                >
-                  <input
-                    type="text"
-                    id="small-input"
-                    placeholder="Rédigez votre réponse "
-                    class="block col-span-3 w-full p-2 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 sm:text-xs"
-                  />
-
-                  <button
-                    class="text-white bg-indigo-700 hover:bg-indigo-800 focus:outline-none font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex justify-center items-center mr-2"
-                  >
-                    <svg
-                      class="w-3 h-3 text-white mr-4"
-                      aria-hidden="true"
-                      xmlns="http://www.w3.org/2000/svg"
-                      fill="none"
-                      viewBox="0 0 8 14"
-                    >
-                      <path
-                        stroke="currentColor"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                        stroke-width="2"
-                        d="m1 13 5.7-5.326a.909.909 0 0 0 0-1.348L1 1"
-                      />
-                    </svg>
-                    Répondre
-                  </button>
-                </div>
-                <% } %>
-              </div>
-            </div>
           </div>
         </section>
       </div>
@@ -761,6 +594,7 @@
     <!--Footer -->
     <%- include('./partials/footer.ejs'); %>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.8.1/flowbite.min.js"></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.8.1/flowbite.min.js"></script>
   </body>
 </html>
