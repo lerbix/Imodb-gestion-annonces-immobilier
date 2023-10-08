@@ -111,3 +111,39 @@ describe("Login", () => {
       });
   });
 });
+
+describe("GET une annonce spécifique a l'aide de son id", () => {
+  let browser;
+  let page;
+
+  before(async () => {
+    browser = await puppeteer.launch();
+    page = await browser.newPage();
+  });
+
+  after(async () => {
+    await browser.close();
+  });
+
+  it("Devrait vérifier que le titre de l'annonce correspond à celui de la base de données", async () => {
+    // Récupérez l'annonce de la base de données avec l'ID spécifié (remplacez par votre propre logique)
+    const annonceFromDB = await Annonce.findById(annonceId);
+
+    // Construisez l'URL de la page à tester
+    const url = `http://localhost:3000/annonces/${annonceId}`;
+
+    // Naviguez vers la page de l'annonce
+    await page.goto(url);
+
+    // Attendez que le titre de l'annonce soit chargé
+    await page.waitForSelector("#annonce-titre");
+
+    // Récupérez le titre de l'annonce à partir de la page
+    const annonceTitre = await page.$eval("#annonce-titre", (element) =>
+      element.textContent.trim()
+    );
+
+    // Comparer le titre de l'annonce avec celui de la base de données
+    expect(annonceTitre).to.equal(annonceFromDB.titre);
+  });
+});
