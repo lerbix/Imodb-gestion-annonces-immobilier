@@ -129,6 +129,23 @@
           include('./partials/annonceCarte.ejs', {annonce: annonce}); %> <% });
           %>
         </div>
+
+        <!-- Ajoutez la pagination ici -->
+        <div class="mt-5 text-center">
+          <% if (currentPage > 1) { %>
+          <a href="?page=<%= currentPage - 1 %>"
+            class="bg-blue-100 hover:bg-blue-200 text-blue-800 text-xs font-semibold mr-2 px-2.5 py-0.5 rounded  border border-blue-400 inline-flex items-center justify-center"">Page
+            précédente</a>
+          <% } %>
+
+          <% if (currentPage < totalPages) { %>
+          <a href="?page=<%= currentPage + 1 %>"
+            class="bg-blue-100 hover:bg-blue-200 text-blue-800 text-xs font-semibold mr-2 px-2.5 py-0.5 rounded  border border-blue-400 inline-flex items-center justify-center">Page
+            suivante</a>
+          <% } %>
+        </div>
+        <!-- Fin de la pagination -->
+
         <% } else { %>
 
         <div class="text-2xl font-light py-5 text-center">
@@ -142,7 +159,6 @@
             Créer une annonce
           </a>
         </div>
-
         <% } %>
       </div>
     </section>

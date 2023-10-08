@@ -1,16 +1,35 @@
 const Annonce = require("../models/annonces");
 const moment = require("moment");
 const mongoose = require("mongoose");
+
 const getAllAnnonces = async (req, res, next) => {
   try {
+    const page = parseInt(req.query.page) || 1;
+    const perPage = 6; // Nombre d'annonces par page
+
+    const totalAnnonces = await Annonce.countDocuments({
+      statusPublication: "Publiée",
+    });
+
+    const totalPages = Math.ceil(totalAnnonces / perPage);
+
+    if (page > totalPages) {
+      return res.redirect(`/`);
+    }
+
     const annonces = await Annonce.find({
       statusPublication: "Publiée",
-    }).exec(); // Utilisez .exec() pour exécuter la requête
+    })
+      .skip((page - 1) * perPage)
+      .limit(perPage)
+      .exec();
 
     res.render("annonces", {
       title: "Annonces",
       annonces: annonces,
       isAdmin: req.user ? req.user.isAdmin : undefined,
+      currentPage: page > totalPages ? totalPages : page,
+      totalPages: totalPages,
     });
   } catch (err) {
     console.error("Erreur lors de la récupération des annonces :", err);
@@ -208,8 +227,6 @@ const poserQuestion = (req, res, next) => {
   const userId = req.user._id;
   const userName = req.user.username;
   const { question } = req.body;
-  console.log("lerni");
-  console.log(req.user);
 
   // Créez un objet question
   const nouvelleQuestion = {
@@ -291,8 +308,6 @@ const repondreQuestion = (req, res, next) => {
 
 const getMesAnnonces = async (req, res, next) => {
   try {
-    console.log("lerbi");
-    console.log(req.user._id);
     const annonces = await Annonce.find({
       agent_immobilier: req.user._id,
     }).exec();
