@@ -7,6 +7,7 @@
     "test": "npx mocha tests/compareTest.test.js"
   },
   "dependencies": {
+    "chai": "^4.3.10",
     "connect-mongodb-session": "^3.1.1",
     "cookie-parser": "~1.4.4",
     "debug": "~2.6.9",
@@ -27,7 +28,8 @@
     "passport-local": "^1.0.0",
     "passport-local-mongoose": "^8.0.0",
     "pug": "2.0.0-beta11",
-    "puppeteer": "^21.3.8"
+    "puppeteer": "^21.3.8",
+    "supertest": "^6.3.3"
   },
   "devDependencies": {
     "mocha": "^10.2.0"
