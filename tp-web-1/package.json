@@ -3,7 +3,8 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "nodemon ./bin/www"
+    "start": "nodemon ./bin/www",
+    "test": "npx mocha tests/compareTest.test.js"
   },
   "dependencies": {
     "connect-mongodb-session": "^3.1.1",
@@ -25,6 +26,10 @@
     "passport": "^0.6.0",
     "passport-local": "^1.0.0",
     "passport-local-mongoose": "^8.0.0",
-    "pug": "2.0.0-beta11"
+    "pug": "2.0.0-beta11",
+    "puppeteer": "^21.3.8"
+  },
+  "devDependencies": {
+    "mocha": "^10.2.0"
   }
 }
