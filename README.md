@@ -22,12 +22,13 @@ IMODB un site Web de gestion d'annonces immobilières développé dans le cadre 
 1. Clonez ce dépôt Git sur votre ordinateur local :
 
    ```bash
-   git clone https://github.com/votre-utilisateur/projet-annonces-immobilieres.git
+   git clone https://github.com/lerbix/Imodb-gestion-annonces-immobilier
    ```
 
 2. Déplacez-vous dans le dossier du projet :
 
    ```bash
+   cd Imodb-gestion-annonces-immobilier
    cd tp-web-1
    ```
 
