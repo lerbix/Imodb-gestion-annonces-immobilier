@@ -121,10 +121,6 @@ const getAnnonceInfo = async (req, res, next) => {
       userId: req.user ? req.user._id : null,
     });
   } catch (err) {
-    console.error(
-      "Erreur lors de la récupération des détails de l'annonce :",
-      err
-    );
     return next(err);
   }
 };
